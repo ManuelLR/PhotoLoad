@@ -1,0 +1,2 @@
+serviceClass: es.client.services.FlickrAuthenticatedService
+path: 1F5BDA8799658DE26951E3212C51D426.gwt.rpc

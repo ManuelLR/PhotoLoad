@@ -7,18 +7,42 @@
 
   <!-- Servlets -->
   <servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>es.server.GreetingServiceImpl</servlet-class>
+    <servlet-name>flickrServlet</servlet-name>
+    <servlet-class>es.server.FlickrAuthenticatedServiceImpl</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/photoload/greet</url-pattern>
+    <servlet-name>flickrServlet</servlet-name>
+    <url-pattern>/photoload/flickr</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>dropboxServlet</servlet-name>
+    <servlet-class>es.server.DropboxAuthenticatedServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>dropboxServlet</servlet-name>
+    <url-pattern>/photoload/dropbox</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>PhotoLoad.html</welcome-file>
   </welcome-file-list>
+
+    <servlet>
+    <servlet-name>SystemServiceServlet</servlet-name>
+    <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
+    <init-param>
+      <param-name>services</param-name>
+      <param-value/>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>SystemServiceServlet</servlet-name>
+    <url-pattern>/_ah/spi/*</url-pattern>
+  </servlet-mapping>
 
 </web-app>
