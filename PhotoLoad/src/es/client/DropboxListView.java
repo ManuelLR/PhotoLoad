@@ -115,7 +115,6 @@ public class DropboxListView extends Composite {
 				.add(new Label(
 						"Escriba aqui la ruta de la carpeta (si lo dejas en blanco ira a la raiz)"));
 		mainPanel.add(plTextBox);
-		mainPanel.add(new Label("actualiza"));
 		mainPanel.add(labelGD);
 		mainPanel.add(labelAccessToken);
 		mainPanel.add(buttonGDFiles);
