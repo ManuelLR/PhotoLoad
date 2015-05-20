@@ -45,7 +45,8 @@ public class DropboxListView extends Composite {
 		final String DROPBOX_URL = "https://www.dropbox.com/1/oauth2/authorize";
 		final String DROPBOX_ID = "t9zcgs18eplaqm4";
 
-		Button buttonGD = new Button("Inicia sesion en Dropbox");
+		Button buttonGD = new Button("Por favor, inicie sesión en Dropbox");
+		
 		Button buttonGDFiles = new Button("Obten tus archivos de Dropbox");
 
 		final Label labelGD = new Label("");
