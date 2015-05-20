@@ -22,13 +22,13 @@ public class DownloadView extends Composite {
 	}
 	
 	private Widget splitUp(){
-		return new HTML("Eleccion de fotos");
+		return new FacebookDownloadView(null);
 	}
 /*	private Widget splitDownLeft(){
 		return new HTML("donde descargar las fotos 1");
 	}*/
 	private Widget splitDownLeft(){
-		return new FlickrUploadView(null);
+		return new HTML("Hueco inutilizado");
 	}
 	private IsWidget splitDownRight(){
 		//return new HTML("vISTAAAAAA");

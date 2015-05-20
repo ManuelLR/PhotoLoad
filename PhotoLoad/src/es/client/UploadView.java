@@ -23,7 +23,7 @@ public class UploadView extends Composite {
 		splitPanel.add(splitDownRight());
 	}
 	private Widget splitUp(){
-		return new HTML("Eleccion de fotos");
+		return new FacebookUploadView(null);
 	}
 /*	private Widget splitDownLeft(){
 		return new HTML("donde descargar las fotos 1");

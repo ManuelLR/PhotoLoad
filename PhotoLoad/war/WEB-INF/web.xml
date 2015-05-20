@@ -26,6 +26,16 @@
     <url-pattern>/photoload/dropbox</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+    <servlet-name>facebookServlet</servlet-name>
+    <servlet-class>es.server.FacebookAuthenticatedServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>facebookServlet</servlet-name>
+    <url-pattern>/photoload/facebook</url-pattern>
+  </servlet-mapping>
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>PhotoLoad.html</welcome-file>
