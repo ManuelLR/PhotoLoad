@@ -1,2 +1,4 @@
 # Module photoload
 # RPC service class, partial path of RPC policy file
+es.client.services.DropboxAuthenticatedService, B25C6B04BD1A10304851DE77A29EC2B2.gwt.rpc
+es.client.services.FlickrAuthenticatedService, 1F5BDA8799658DE26951E3212C51D426.gwt.rpc
