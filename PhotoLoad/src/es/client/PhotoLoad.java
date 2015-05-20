@@ -30,7 +30,7 @@ public class PhotoLoad implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		go("uploadView", new HashMap<String,Object>());
+		go("loginView", new HashMap<String,Object>());
 	};
 	public static void go(String token){
 			PhotoLoad.go(token, new HashMap<String,Object>());
@@ -44,13 +44,14 @@ public class PhotoLoad implements EntryPoint {
 		dockPanel.addEast(new HTML("Por este lateral deberían ir los logos!  ! ! !"), 2);
 		
 		if (token=="uploadView"){
-			//mainPanel.clear();
+			mainPanel.clear();
 			dockPanel.add(new UploadView(params));
 			mainPanel.add(dockPanel);
 		}else if (token=="downloadView" ){
 			//NEW WINDOW: p.clear();
 			mainPanel.clear();
-			mainPanel.add(new DownloadView(params));
+			dockPanel.add(new DownloadView(params));
+			mainPanel.add(dockPanel);
 		}else if (token=="loginView"){
 			//NEW WINDOW: p.clear();
 			mainPanel.clear();
