@@ -19,7 +19,7 @@ public class FacebookPhotosResource {
 		
 	/**
 	 * 
-	 * @return FacebookFriends
+	 * @return FacebookPhotos
 	 */
 	public FacebookPhotos getPhotos() {
 		
