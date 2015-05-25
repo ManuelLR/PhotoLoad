@@ -13,7 +13,6 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TextBox;
@@ -24,6 +23,7 @@ import es.client.services.FacebookAuthenticatedServiceAsync;
 import es.shared.IntViews;
 import es.shared.domain.facebook.FBDataPhoto;
 import es.shared.domain.facebook.FacebookPhotos;
+import es.shared.domain.facebook.Images;
 
 public class FacebookDownloadView extends Composite {
 
@@ -138,6 +138,18 @@ public class FacebookDownloadView extends Composite {
 		if (result != null && !result.getData().isEmpty()) {
 			for (FBDataPhoto a: result.getData()) {
 				Button descargar = new Button("Seleccionar");
+				final String link=a.getImages().get(0).getSource();
+/*				for(Images ja:a.getImages()){
+					link+="<a href=\""+ja.getSource()+"\"> "+ja.getHeight()+"</a>";
+				}*/
+				descargar.addClickHandler(new ClickHandler() {
+					public void onClick(ClickEvent event) {
+						// TODO Auto-generated method stub
+						interaccion.getLink().add(link);
+						PhotoLoad.go("publishView", interaccion);
+					}
+				});
+				filesTable.setWidget(i+1, 2, new HTML(link));
 				output ="<span> <a href=\""+a.getLink()+"\"><img src=\"" + a.getPicture()+"\" alt=\""+ a.getName()+" ("+a.getId()+")\"></a></span><br/>";
 				filesTable.setWidget(i+1, 0, new HTML(output));
 				filesTable.setWidget(i+1, 1, descargar);
