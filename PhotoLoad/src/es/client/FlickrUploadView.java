@@ -3,7 +3,6 @@ package es.client;
 import java.util.List;
 import java.util.Map;
 
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -18,6 +17,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import es.client.services.FlickrAuthenticatedService;
 import es.client.services.FlickrAuthenticatedServiceAsync;
+import es.shared.IntViews;
 import es.shared.domain.flickr.FlickrAuth;
 import es.shared.domain.flickr.FlickrPhoto;
 
@@ -39,7 +39,7 @@ public class FlickrUploadView extends Composite {
 	
 	private static FlickrAuth auth;
 
-	public FlickrUploadView(Map<String, Object> params) {
+	public FlickrUploadView(IntViews params) {
 		initWidget(panelScroll);
 		panelScroll.add(panel);
 		login();

@@ -11,6 +11,8 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import es.shared.IntViews;
+
 public class LoginView extends Composite {
 
 	private VerticalPanel verPanel;
@@ -19,7 +21,7 @@ public class LoginView extends Composite {
 	private Button buttonInfo = new Button("Acerca de");
 
 	
-	public LoginView(Map<String, Object> params) {
+	public LoginView(IntViews params) {
 		// TODO Auto-generated constructor stub
 		verPanel=new VerticalPanel();
 		verPanel.setWidth("900px"); // Debería ser automático sabiendo justo el tamaño de la ventana del navegador

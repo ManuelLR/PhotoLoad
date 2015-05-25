@@ -21,6 +21,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import es.client.services.FacebookAuthenticatedService;
 import es.client.services.FacebookAuthenticatedServiceAsync;
+import es.shared.IntViews;
 import es.shared.domain.facebook.FBDataPhoto;
 import es.shared.domain.facebook.FBPhotoUpload;
 import es.shared.domain.facebook.FacebookPhotos;
@@ -45,7 +46,7 @@ public class FacebookUploadView extends Composite {
 		final TextBox linkPhotoUpdate = new TextBox();
 		final TextBox namePhotoUpdate = new TextBox();
 		
-	public FacebookUploadView(Map<String, Object> params) {
+	public FacebookUploadView(IntViews params) {
 
 		// MAIN PANEL
 		mainPanelUpload = new VerticalPanel();

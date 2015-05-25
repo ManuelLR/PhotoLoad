@@ -15,6 +15,8 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 
+import es.shared.IntViews;
+
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -35,19 +37,20 @@ public class PhotoLoad implements EntryPoint {
 	/**
 	 * This is the entry point method.
 	 */
+
 	public void onModuleLoad() {
-		go("loginView", new HashMap<String,Object>());
+		go("loginView", new IntViews());
 	};
 	public static void go(String token){
-			PhotoLoad.go(token, new HashMap<String,Object>());
+			PhotoLoad.go(token, new IntViews());
 	}
 		
-	public static void go(String token, Map<String,Object> params){
+	public static void go(String token, IntViews params){
 		RootLayoutPanel mainPanel = RootLayoutPanel.get();
 		DockLayoutPanel dockPanel = new DockLayoutPanel(Unit.EM);
-		dockPanel.addNorth(cabecera(), 2);
+		dockPanel.addNorth(cabecera(params), 2);
 		dockPanel.addSouth(new HTML("<center>Pie de página</center>"), 2);
-		dockPanel.addEast(pie(), 2);
+		dockPanel.addEast(pie(params), 2);
 		
 		if (token=="uploadView"){
 			mainPanel.clear();
@@ -68,12 +71,12 @@ public class PhotoLoad implements EntryPoint {
 			mainPanel.add(dockPanel);
 		}
 	}
-	public static Widget pie(){
+	public static Widget pie(IntViews params){
 		
 		return new HTML("Por este lateral deberían ir los logos!  ! ! !");
 	}
 	
-	public static Widget cabecera(){
+	public static Widget cabecera(final IntViews params){
 		Button buttonUpload = new Button("Publica tus fotos !");
 		Button buttonDownload = new Button("Descarga tus fotos !");
 		Button buttonInfo = new Button("Acerca de");
@@ -86,17 +89,17 @@ public class PhotoLoad implements EntryPoint {
 		cabecera.add(buttonInfo);
 		buttonUpload.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				PhotoLoad.go("uploadView");
+				PhotoLoad.go("uploadView", params);
 			}
 		});
 		buttonDownload.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				PhotoLoad.go("downloadView");
+				PhotoLoad.go("downloadView", params);
 			}
 		});
 		buttonInfo.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				PhotoLoad.go("info");
+				PhotoLoad.go("info", params);
 			}
 		});
 		return cabecera;

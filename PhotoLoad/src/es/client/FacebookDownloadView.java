@@ -20,6 +20,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import es.client.services.FacebookAuthenticatedService;
 import es.client.services.FacebookAuthenticatedServiceAsync;
+import es.shared.IntViews;
 import es.shared.domain.facebook.FBDataPhoto;
 import es.shared.domain.facebook.FacebookPhotos;
 
@@ -30,12 +31,14 @@ public class FacebookDownloadView extends Composite {
 	private static final Auth AUTH 	= Auth.get();
 	private final VerticalPanel 	mainPanelDownload;
 	private ScrollPanel panelScroll = new ScrollPanel();
+	private IntViews interaccion;
 	//final Label labelAccessToken	= new Label("");
 	final TextBox plTextBox = new TextBox();
 		Button buttonFBAuth = new Button("Conecta Facebook");
 		final Button buttonFBDownloadPhotos = new Button("Obtén las fotos de Facebook");
-	public FacebookDownloadView(Map<String, Object> params) {
-
+	public FacebookDownloadView(IntViews params) {
+		
+		interaccion=new IntViews();
 		// MAIN PANEL
 		mainPanelDownload=new VerticalPanel();
 		initWidget(panelScroll);
@@ -58,7 +61,8 @@ public class FacebookDownloadView extends Composite {
 						mainPanelDownload.add(buttonFBAuth);
 					}
 					public void onSuccess(String token) {
-						plTextBox.setText(token);
+						interaccion.setFBToken(token);
+						plTextBox.setText(interaccion.getFBToken());
 						afterLoginView();
 					}
 				});
