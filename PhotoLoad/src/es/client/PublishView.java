@@ -40,6 +40,7 @@ public class PublishView extends Composite {
 		buttFBUpload.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				// TODO Auto-generated method stub
+				params.setTo(IntViews.To.FACEBOOK);
 				vertPanel.clear();
 				vertPanel.add(new FacebookUploadView(params));
 			}

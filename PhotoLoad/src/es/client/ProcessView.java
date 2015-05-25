@@ -44,7 +44,6 @@ public class ProcessView extends Composite {
 			}else{//Para acciones predefinidas
 				switch (params.getTo()) {
 				case FACEBOOK:
-					params.setTo(IntViews.To.FACEBOOK);
 					vertPanel.add(new FacebookUploadView(params));
 					break;
 				default:
