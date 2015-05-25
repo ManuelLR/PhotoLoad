@@ -17,7 +17,6 @@ import es.shared.IntViews;
 
 public class ProcessView extends Composite {
 	
-	private SplitLayoutPanel splitPanel;
 	private VerticalPanel vertPanel;
 	
 	Button buttFBDownload = new Button("Descarga desde Facebook");

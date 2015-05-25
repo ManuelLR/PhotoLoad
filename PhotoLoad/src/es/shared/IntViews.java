@@ -12,7 +12,7 @@ public class IntViews {
 	}
 	
 	private  String FBToken="", DropboxToken="", GDToken="";
-	private  FlickrAuth flickrToken = new FlickrAuth();
+	private  FlickrAuth flickrToken = null;
 	private  To to= To.NONE;
 	private  List<String> link = new ArrayList<String>();
 	

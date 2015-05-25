@@ -1,7 +1,6 @@
 package es.client;
 
 import java.util.List;
-import java.util.Map;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -33,6 +32,7 @@ public class FlickrUploadView extends Composite {
 	private Button buttonFlShow = new Button("Visualiza tus fotos de Flickr");
 	private Button buttonFlReturn = new Button("Volver");
 //Info interesante -> http://crest.codegist.org/sample-flickr.html
+	private IntViews interaccion;
 	private TextBox batonUser = new TextBox();
 	private TextBox accessToken = new TextBox();
 	private String urlForGetBaton;
@@ -42,7 +42,18 @@ public class FlickrUploadView extends Composite {
 	public FlickrUploadView(IntViews params) {
 		initWidget(panelScroll);
 		panelScroll.add(panel);
-		login();
+		
+		if(params.getFlickrToken()==null){
+			interaccion=new IntViews();
+			login();
+		}else{
+			interaccion=params;
+			//auth=params.getFlickrToken();
+			accessToken.setText(interaccion.getFlickrToken().getAccessToken().toString());
+			afterLogin();
+		}
+		
+		
 		// panel.add(new HTML("Pues aquí ira flickr jeiiiiiii"));
 	}
 
@@ -55,7 +66,7 @@ public class FlickrUploadView extends Composite {
 				flickrService.authPrim(new AsyncCallback<FlickrAuth>() {
 					public void onSuccess(FlickrAuth result) {
 						// Window.alert(result);
-						auth=result;
+						interaccion.setFlickrToken(result);
 						urlForGetBaton =result.getUrlForGetBaton();
 						loginSec();
 					}
@@ -77,8 +88,8 @@ public class FlickrUploadView extends Composite {
 				if(batonUser.getText()==null || batonUser.getText().isEmpty()){
 					Window.alert("Por favor, introduzca el código si desea continuar");
 				}else{
-					auth.setVerifierCode(batonUser.getText().trim());
-				flickrService.authSeg(auth,
+					interaccion.getFlickrToken().setVerifierCode(batonUser.getText().trim());
+				flickrService.authSeg(interaccion.getFlickrToken(),
 						new AsyncCallback<FlickrAuth>() {
 							public void onFailure(Throwable caught) {
 								Window.alert("Error: \n" + caught.toString());
@@ -86,7 +97,7 @@ public class FlickrUploadView extends Composite {
 
 							public void onSuccess(FlickrAuth result) {
 								// Window.alert("Valor devuelto: "+result);
-								auth=result;
+								interaccion.setFlickrToken(result);
 								accessToken.setText(result.getAccessToken().getToken());
 								afterLogin();
 							}
@@ -99,7 +110,7 @@ public class FlickrUploadView extends Composite {
 		loginViewSucces();
 		buttonFlShow.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				flickrService.getPhotos(auth, new AsyncCallback<List<FlickrPhoto>>() {
+				flickrService.getPhotos(interaccion.getFlickrToken(), new AsyncCallback<List<FlickrPhoto>>() {
 					public void onFailure(Throwable caught) {
 						Window.alert("Error del servidor: " + caught.toString());
 					}
