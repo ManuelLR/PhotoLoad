@@ -54,12 +54,16 @@ public class PhotoLoad implements EntryPoint {
 		
 		if (token=="uploadView"){
 			mainPanel.clear();
-			dockPanel.add(new UploadView(params));
+			dockPanel.add(new PublishView(params));
+			mainPanel.add(dockPanel);
+		}else if(token=="publishView"){
+			mainPanel.clear();
+			dockPanel.add(new PublishView(params));
 			mainPanel.add(dockPanel);
 		}else if (token=="downloadView" ){
 			//NEW WINDOW: p.clear();
 			mainPanel.clear();
-			dockPanel.add(new DownloadView(params));
+			dockPanel.add(new ProcessView(params));
 			mainPanel.add(dockPanel);
 		}else if (token=="loginView"){
 			//NEW WINDOW: p.clear();

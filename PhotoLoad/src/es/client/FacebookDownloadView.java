@@ -1,8 +1,6 @@
 package es.client;
 
 
-import java.util.Map;
-
 import com.google.api.gwt.oauth2.client.Auth;
 import com.google.api.gwt.oauth2.client.AuthRequest;
 import com.google.gwt.core.client.Callback;
@@ -36,20 +34,21 @@ public class FacebookDownloadView extends Composite {
 	private IntViews interaccion;
 	//final Label labelAccessToken	= new Label("");
 	final TextBox plTextBox = new TextBox();
-		Button buttonFBAuth = new Button("Conecta Facebook");
-		final Button buttonFBDownloadPhotos = new Button("Obtén las fotos de Facebook");
+	Button buttonFBAuth = new Button("Conecta Facebook");
+	final Button buttonFBDownloadPhotos = new Button("Obtén las fotos de Facebook");
+	
 	public FacebookDownloadView(IntViews params) {
 		// MAIN PANEL
 		
 		mainPanelDownload=new VerticalPanel();
 		initWidget(panelScroll);
 		panelScroll.add(mainPanelDownload);	
-		
-		
+			
 		if(params.getFBToken().isEmpty()){
 			interaccion=new IntViews();
 			loginView();			
 		}else{
+			plTextBox.setText(params.getFBToken());
 			afterLoginView();
 		}
 		//si queremos pedir mas de un parametro se hace con "&". Ej: https://graph.facebook.com/me/photos?fields=likes&access_token=xxxxx

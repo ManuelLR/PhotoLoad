@@ -32,7 +32,7 @@ public class FlickrUploadView extends Composite {
 	private Button buttonFlAuthCont = new Button("Continuar login a Flickr");
 	private Button buttonFlShow = new Button("Visualiza tus fotos de Flickr");
 	private Button buttonFlReturn = new Button("Volver");
-
+//Info interesante -> http://crest.codegist.org/sample-flickr.html
 	private TextBox batonUser = new TextBox();
 	private TextBox accessToken = new TextBox();
 	private String urlForGetBaton;

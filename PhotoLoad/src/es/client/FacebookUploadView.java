@@ -1,8 +1,5 @@
 package es.client;
 
-
-import java.util.Map;
-
 import com.google.api.gwt.oauth2.client.Auth;
 import com.google.api.gwt.oauth2.client.AuthRequest;
 import com.google.gwt.core.client.Callback;
@@ -75,59 +72,7 @@ public class FacebookUploadView extends Composite {
 		}
 		
 		
-
-
-
-
-		buttonFBUploadPhotos.addClickHandler(new ClickHandler() {
-
-			@Override
-			public void onClick(ClickEvent event) {
-				//if (labelAccessToken.getText()=="")
-				if (plTextBox.getText()=="" || plTextBox.getText().isEmpty()){
-					Window.alert("Please, login before update Photos");
-				}else if(linkPhotoUpdate.getText()=="" || linkPhotoUpdate.getText().isEmpty()){
-					Window.alert("Please, pon un link");
-				}
-				else{
-					//facebookService.findPhotos(labelAccessToken.getText(), new AsyncCallback<FacebookPhotos>() {
-					//facebookService.findPhotos(tempToken, new AsyncCallback<FacebookPhotos>() {
-					//facebookService.findPhotos(plTextBox.getText(), new AsyncCallback<FacebookPhotos>() {
-					FBPhotoUpload foto = new FBPhotoUpload();
-					foto.setURL(linkPhotoUpdate.getText());
-					foto.setName(namePhotoUpdate.getText());
-					facebookService.uploadPhoto(plTextBox.getText(), foto, new AsyncCallback<Struct>(){
-						@Override
-						public void onSuccess(Struct result) {
-							//Window.alert(result.toString());
-							//Window.alert("Las fotos se han obtenido correctamente, vamos aproceder a mostrarlas");
-							//showPhotos(result);
-							boolean correct= result != null;
-							try{
-								correct = !result.getId().isEmpty() && result.getId() != null;
-							}catch(Exception e){
-								correct =false;}
-							if (correct){
-								Window.alert("Foto subida correctamente");
-								afterLoginView();
-
-							}else{
-								Window.alert("La foto no se ha podido subir, disculpe las molestias");
-							}
-							//Window.alert("Foto subida correctamente"+result.getId());
-						}
-
-						@Override
-						public void onFailure(Throwable caught) {
-							Window.alert("Ha habido un error: \n"+caught+". \n"+helpLoginFacebook());
-							//helpLoginFacebook();
-						}
-					});	
-
-				}
-			}
-		});
-		loginView();
+		//loginView();
 		/*mainPanelUpload.add(buttonFBAuth);
 		mainPanelUpload.add(labelFB);
 		//mainPanelUpload.add(labelAccessToken);
@@ -139,7 +84,7 @@ public class FacebookUploadView extends Composite {
 	}
 
 	
-	void showPhotos(FacebookPhotos result){
+	public void showPhotos(FacebookPhotos result){
 		String output="<fieldset>";
 		output += "<legend>Facebook Photos</legend>";
 		if (result != null) {
@@ -178,6 +123,7 @@ public class FacebookUploadView extends Composite {
 					}
 					public void onSuccess(String token) {
 						plTextBox.setText(token);
+						interaccion.setFBToken(token);
 						mainPanelUpload.remove(buttonFBAuth);
 						mainPanelUpload.remove(widgetHelp);
 					}
@@ -204,7 +150,48 @@ public class FacebookUploadView extends Composite {
 		}
 		mainPanelUpload.add(linkPhotoUpdate);
 		mainPanelUpload.add(new HTML("Añade un nombre a tu foto: "));
-		mainPanelUpload.add(namePhotoUpdate);		
+		mainPanelUpload.add(namePhotoUpdate);
+		buttonFBUploadPhotos.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				if (plTextBox.getText()=="" || plTextBox.getText().isEmpty()){
+					Window.alert("Please, login before update Photos");
+					loginView();
+				}else if(linkPhotoUpdate.getText()=="" || linkPhotoUpdate.getText().isEmpty()){
+					Window.alert("Por favor, ponga un link");
+				}
+				else{
+					//facebookService.findPhotos(labelAccessToken.getText(), new AsyncCallback<FacebookPhotos>() {
+					//facebookService.findPhotos(tempToken, new AsyncCallback<FacebookPhotos>() {
+					//facebookService.findPhotos(plTextBox.getText(), new AsyncCallback<FacebookPhotos>() {
+					FBPhotoUpload foto = new FBPhotoUpload();
+					foto.setURL(linkPhotoUpdate.getText());
+					foto.setName(namePhotoUpdate.getText());
+					facebookService.uploadPhoto(plTextBox.getText(), foto, new AsyncCallback<Struct>(){
+						@Override
+						public void onSuccess(Struct result) {
+							boolean correct= result != null;
+							try{
+								correct = !result.getId().isEmpty() && result.getId() != null;
+							}catch(Exception e){
+								correct =false;}
+							if (correct){
+								Window.alert("Foto subida correctamente");
+								afterLoginView();
+							}else{
+								Window.alert("La foto no se ha podido subir, disculpe las molestias");
+							}
+						}
+
+						@Override
+						public void onFailure(Throwable caught) {
+							Window.alert("Ha habido un error: \n"+caught+". \n"+helpLoginFacebook());
+							//helpLoginFacebook();
+						}
+					});	
+
+				}
+			}
+		});
 		mainPanelUpload.add(buttonFBUploadPhotos);
 	}
 }

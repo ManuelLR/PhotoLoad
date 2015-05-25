@@ -8,12 +8,12 @@ import es.shared.domain.flickr.FlickrAuth;
 public class IntViews {
 
 	public enum To {
-		FACEBOOK, DROPBOX, GOOGLEDRIVE, FLICKR
+		FACEBOOK, DROPBOX, GOOGLEDRIVE, FLICKR, NONE
 	}
 	
 	private  String FBToken="", DropboxToken="", GDToken="";
 	private  FlickrAuth flickrToken = new FlickrAuth();
-	private  To to;
+	private  To to= To.NONE;
 	private  List<String> link = new ArrayList<String>();
 	
 	public IntViews() {
