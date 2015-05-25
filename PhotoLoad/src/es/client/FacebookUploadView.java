@@ -35,6 +35,11 @@ public class FacebookUploadView extends Composite {
 	private final VerticalPanel 	mainPanelUpload;
 	private ScrollPanel panelScroll = new ScrollPanel();
 	final Label labelAccessToken	= new Label("");
+	private IntViews interaccion;
+	private final String FACEBOOKAUTH_URL = "https://www.facebook.com/dialog/oauth";
+	private final String FACEBOOKCLIENT_ID = "652936521517274";
+	private final HTML widgetHelp = new HTML(helpLoginFacebook());
+
 
 	//final Label labelAccessToken = new Label("<<INSERT TOKEN ACCESS AND UNCOMMENT>>");
 		Button buttonFBAuth = new Button("Conecta Facebook");
@@ -54,29 +59,23 @@ public class FacebookUploadView extends Composite {
 		panelScroll.add(mainPanelUpload);
 		//initWidget(mainPanelDownload);
 
-		final String FACEBOOKAUTH_URL = "https://www.facebook.com/dialog/oauth";
-		final String FACEBOOKCLIENT_ID = "652936521517274";
+
 		//si queremos pedir mas de un parametro se hace con "&". Ej: https://graph.facebook.com/me/photos?fields=likes&access_token=xxxxx
-		final HTML widgetHelp = new HTML(helpLoginFacebook());
-		buttonFBAuth.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
+		if (params != null) {
+			interaccion=params;
+			if (params.getFBToken().isEmpty()) {
+				//interaccion = new IntViews();
+				loginView();
+			} else {
+				plTextBox.setText(interaccion.getFBToken());
 				afterLoginView();
-				mainPanelUpload.add(buttonFBAuth);
-				mainPanelUpload.add(widgetHelp);
-				final AuthRequest req = new AuthRequest(FACEBOOKAUTH_URL, FACEBOOKCLIENT_ID);
-				AUTH.login(req, new Callback<String, Throwable>() {
-					public void onFailure(Throwable reason) {
-						Window.alert("Error en la autenticación: \n"+reason);
-					}
-					public void onSuccess(String token) {
-						plTextBox.setText(token);
-						mainPanelUpload.remove(buttonFBAuth);
-						mainPanelUpload.remove(widgetHelp);
-					}
-				});
 			}
-		});
+		} else {
+			interaccion = new IntViews();
+		}
+		
+		
+
 
 
 
@@ -165,6 +164,26 @@ public class FacebookUploadView extends Composite {
 		mainPanelUpload.clear();
 		//mainPanelUpload.add(new HTML("<h1> Sube tus fotos ! </h1>"));
 		mainPanelUpload.add(buttonFBAuth);
+		
+		buttonFBAuth.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				afterLoginView();
+				mainPanelUpload.add(buttonFBAuth);
+				mainPanelUpload.add(widgetHelp);
+				final AuthRequest req = new AuthRequest(FACEBOOKAUTH_URL, FACEBOOKCLIENT_ID);
+				AUTH.login(req, new Callback<String, Throwable>() {
+					public void onFailure(Throwable reason) {
+						Window.alert("Error en la autenticación: \n"+reason);
+					}
+					public void onSuccess(String token) {
+						plTextBox.setText(token);
+						mainPanelUpload.remove(buttonFBAuth);
+						mainPanelUpload.remove(widgetHelp);
+					}
+				});
+			}
+		});
 	}
 
 	private String helpLoginFacebook() {
@@ -180,6 +199,9 @@ public class FacebookUploadView extends Composite {
 		mainPanelUpload.add(new HTML("Access Token: "));
 		mainPanelUpload.add(plTextBox);
 		mainPanelUpload.add(new HTML("Link a la foto que deseas subir: "));
+		if(interaccion.getTo().equals(IntViews.To.FACEBOOK)&&!interaccion.getLink().isEmpty()){
+			linkPhotoUpdate.setText(interaccion.getLink().get(0));
+		}
 		mainPanelUpload.add(linkPhotoUpdate);
 		mainPanelUpload.add(new HTML("Añade un nombre a tu foto: "));
 		mainPanelUpload.add(namePhotoUpdate);		
