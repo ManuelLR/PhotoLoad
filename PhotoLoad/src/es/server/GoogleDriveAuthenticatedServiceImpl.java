@@ -10,6 +10,11 @@ import es.shared.domain.googledrive.Files;
 public class GoogleDriveAuthenticatedServiceImpl extends RemoteServiceServlet
 		implements GoogleDriveAuthenticatedService {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7498010042997641040L;
+
 	@Override
 	public Files getFiles(String access_token) {
 		GoogleDriveResource gdr = new GoogleDriveResource(access_token);
