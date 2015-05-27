@@ -12,13 +12,13 @@ public class Tags implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 5696177501140049440L;
-	private List data;
+	private List<Data> data;
    	private Paging paging;
 
- 	public List getData(){
+ 	public List<Data> getData(){
 		return this.data;
 	}
-	public void setData(List data){
+	public void setData(List<Data> data){
 		this.data = data;
 	}
  	public Paging getPaging(){

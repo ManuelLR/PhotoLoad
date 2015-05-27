@@ -18,7 +18,7 @@ public class FBDataPhoto implements Serializable{
    	private Number height;
    	private String icon;
    	private String id;
-   	private List images;
+   	private List<String> images;
    	private Likes likes;
    	private String link;
    	private String name;
@@ -65,10 +65,10 @@ public class FBDataPhoto implements Serializable{
 	public void setId(String id){
 		this.id = id;
 	}
- 	public List getImages(){
+ 	public List<String> getImages(){
 		return this.images;
 	}
-	public void setImages(List images){
+	public void setImages(List<String> images){
 		this.images = images;
 	}
  	public Likes getLikes(){
