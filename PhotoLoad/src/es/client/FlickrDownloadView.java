@@ -15,7 +15,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Widget;
 
 import es.client.services.FlickrAuthenticatedService;
 import es.client.services.FlickrAuthenticatedServiceAsync;
@@ -146,28 +145,8 @@ public class FlickrDownloadView extends Composite {
 		panel.add(new HTML("Te has logueado exitosamente ! Tu token es: "
 				+ accessToken.getText()));
 		panel.add(buttonFlShow);
-		panel.add(testUpload());
 	}
 	
-	private Widget testUpload(){
-		Button buttonFlUpload=new Button("Upload photos to Flickr");
-		buttonFlUpload.addClickHandler(new ClickHandler() {
-
-			public void onClick(ClickEvent event) {
-				flickrService.uploadPhotos(interaccion.getFlickrToken(), null, new AsyncCallback<Boolean>() {
-					public void onSuccess(Boolean result) {
-						Window.alert("La petición ha ido bien y el booleano devuelto ha sido: "+result);
-					}
-					
-					@Override
-					public void onFailure(Throwable caught) {
-						Window.alert("La peticion ha ido mal por: "+caught);
-					}
-				});
-			}
-		});
-		return buttonFlUpload;
-	}
 
 	private void showPhotos(List<FlickrPhoto> input) {
 		panel.clear();

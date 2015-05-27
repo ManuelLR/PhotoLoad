@@ -145,12 +145,12 @@ public class FlickrUploadView extends Composite {
 		panel.clear();
 		panel.add(new HTML("Te has logueado exitosamente ! Tu token es: "
 				+ accessToken.getText()));
-		panel.add(buttonFlShow);
+		//panel.add(buttonFlShow);
 		panel.add(testUpload());
 	}
 	
 	private Widget testUpload(){
-		Button buttonFlUpload=new Button("Upload photos to Flickr");
+		Button buttonFlUpload=new Button("Upload photos to Flickr (en pruebas)");
 		buttonFlUpload.addClickHandler(new ClickHandler() {
 
 			public void onClick(ClickEvent event) {
