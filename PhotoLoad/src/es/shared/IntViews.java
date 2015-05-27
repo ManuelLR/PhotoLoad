@@ -56,7 +56,11 @@ public class IntViews {
 		this.link = link;
 	}
 	public void addLink(String link) {
-		this.link.set(0, link);
+		if(this.link.isEmpty()){
+			this.link.add(link);
+		}else{
+			this.link.set(0, link);
+		}
 	}
 	
 	

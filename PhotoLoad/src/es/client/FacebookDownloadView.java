@@ -23,6 +23,7 @@ import es.client.services.FacebookAuthenticatedServiceAsync;
 import es.shared.IntViews;
 import es.shared.domain.facebook.FBDataPhoto;
 import es.shared.domain.facebook.FacebookPhotos;
+import es.shared.domain.facebook.Images;
 
 public class FacebookDownloadView extends Composite {
 
@@ -135,17 +136,18 @@ public class FacebookDownloadView extends Composite {
 			for (FBDataPhoto a: result.getData()) {
 				Button descargar = new Button("Seleccionar");
 				final String link=a.getImages().get(0).getSource();
-//				for(Images ja:a.getImages()){link+="<a href=\""+ja.getSource()+"\"> "+ja.getHeight()+"</a>";}
+				//for(Images ja:a.getImages()){link+="<a href=\""+ja.getSource()+"\"> "+ja.getHeight()+"</a>";}
 				descargar.addClickHandler(new ClickHandler() {
 					public void onClick(ClickEvent event) {
 						interaccion.addLink(link);
 						PhotoLoad.go("publishView", interaccion);
 					}
 				});
-				//filesTable.setWidget(i+1, 2, new HTML(link));
 				 String output ="<span> <a href=\""+a.getLink()+"\"><img src=\"" + a.getPicture()+"\" alt=\""+ a.getName()+" ("+a.getId()+")\"></a></span><br/>";
 				filesTable.setWidget(i+1, 0, new HTML(output));
 				filesTable.setWidget(i+1, 1, descargar);
+				//filesTable.setWidget(i+1, 2, new HTML(link));
+
 				i ++;
 			}
 		}else{

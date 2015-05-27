@@ -171,7 +171,7 @@ public class FlickrUploadView extends Composite {
 							filesTable.getRowFormatter().setStylePrimaryName(0, "firstRow");
 							filesTable.setWidget(0, 0, new Label("Foto"));
 							filesTable.setWidget(0, 1, new Label("Acción"));
-							int i=0;
+							int i=1;
 							for (FlickrPhoto actual : result) {
 								Button descargar = new Button("Seleccionar");								
 								String link;
@@ -189,9 +189,13 @@ public class FlickrUploadView extends Composite {
 								}
 								/*panel.add(new HTML("Foto: " + actual.getTitle()
 										+ "(" + actual.getID() + ")"));*/
-								panel.add(new HTML("<a href=\"" + linkOri
+								/*panel.add(new HTML("<a href=\"" + linkOri
+										+ "\"><img alt=\"" + actual.getTitle()
+										+ "\" src=\"" + link + "\"></img> </a>"));*/
+								filesTable.setWidget(i, 0, new HTML("<a href=\"" + linkOri
 										+ "\"><img alt=\"" + actual.getTitle()
 										+ "\" src=\"" + link + "\"></img> </a>"));
+								filesTable.setWidget(i, 1, new HTML(toPrint));
 								i++;
 							}
 							// panel.add(new HTML(res));

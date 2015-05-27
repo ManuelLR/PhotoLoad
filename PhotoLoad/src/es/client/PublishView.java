@@ -30,6 +30,7 @@ public class PublishView extends Composite {
 		inicializaBotones(params);
 		
 		vertPanel.add(buttFBUpload);
+		vertPanel.add(buttDBUpload);
 		
 /*		splitPanel = new SplitLayoutPanel();
 		//initWidget(splitPanel);
