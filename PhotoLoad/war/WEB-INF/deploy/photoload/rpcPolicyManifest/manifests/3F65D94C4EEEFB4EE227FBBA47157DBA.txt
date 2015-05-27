@@ -1,2 +1,0 @@
-serviceClass: es.client.services.FacebookAuthenticatedService
-path: C413BAE7CB13CC03488F16B50291C594.gwt.rpc

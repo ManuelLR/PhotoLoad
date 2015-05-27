@@ -13,11 +13,13 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import es.shared.IntViews;
 import es.shared.domain.dropbox.Contents;
 import es.shared.domain.dropbox.Folder;
 import es.client.services.DropboxAuthenticatedService;
@@ -26,6 +28,7 @@ import es.client.services.DropboxAuthenticatedServiceAsync;
 public class DropboxListView extends Composite {
 
 	private static final Auth AUTH = Auth.get();
+	private IntViews intViews = new IntViews();
 	private VerticalPanel mainPanel;
 	private ScrollPanel panelScroll = new ScrollPanel();
 	private final Label labelAccessToken = new Label("");
@@ -45,7 +48,7 @@ public class DropboxListView extends Composite {
 		final String DROPBOX_URL = "https://www.dropbox.com/1/oauth2/authorize";
 		final String DROPBOX_ID = "t9zcgs18eplaqm4";
 
-		Button buttonGD = new Button("Por favor, inicie sesión en Dropbox");
+		Button buttonGD = new Button("Por favor, inicie sesiÃ³n en Dropbox");
 		
 		Button buttonGDFiles = new Button("Obten tus archivos de Dropbox");
 
@@ -76,9 +79,11 @@ public class DropboxListView extends Composite {
 					@Override
 					public void onSuccess(String result) {
 						// TODO Auto-generated method stub
-						labelAccessToken.setText(result);
-						Window.alert("perfecto, este es su TokenYo: "
-								+ labelAccessToken.getText());
+						//labelAccessToken.setText(result);
+						intViews.setDropboxToken(result);
+						Window.alert("perfecto, este es su Token: "
+								//+ labelAccessToken.getText());
+								+ intViews.getDropboxToken());
 					}
 				});
 			}
@@ -88,10 +93,12 @@ public class DropboxListView extends Composite {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				if (labelAccessToken.getText() == "")
+				//if (labelAccessToken.getText() == "")
+				if (intViews.getDropboxToken() == "")
 					Window.alert("Por favor, inicia sesion antes de pedir datos");
 				else {
-					dropboxService.getFolder(labelAccessToken.getText(),
+					//dropboxService.getFolder(labelAccessToken.getText(),
+					dropboxService.getFolder(intViews.getDropboxToken(),
 							plTextBox.getText(), new AsyncCallback<Folder>() {
 
 								@Override
@@ -111,13 +118,16 @@ public class DropboxListView extends Composite {
 			}
 		});
 
+
+		Label label = new Label(intViews.getDropboxToken());
+		
 		mainPanel.add(buttonGD);
-		mainPanel
-				.add(new Label(
-						"Escriba aqui la ruta de la carpeta (si lo dejas en blanco ira a la raiz)"));
+		//mainPanel.add(new Label("Escriba aqui la ruta de la carpeta (si lo dejas en blanco ira a la raiz)"));
 		mainPanel.add(plTextBox);
 		mainPanel.add(labelGD);
-		mainPanel.add(labelAccessToken);
+		//mainPanel.add(labelAccessToken);
+		mainPanel.add(label);
+		//mainPanel.add(new HTML(intViews.getDropboxToken()));
 		mainPanel.add(buttonGDFiles);
 		mainPanel.add(filesTable);
 		// mainPanel.add(newFileButton);
@@ -169,7 +179,8 @@ public class DropboxListView extends Composite {
 							Window.alert("No es una foto, luego no se puede descargar");
 						} else {
 							dropboxService.downloadFile(
-									labelAccessToken.getText(), c.getPath(),
+									//labelAccessToken.getText(), c.getPath(),
+									intViews.getDropboxToken(), c.getPath(),
 									new AsyncCallback<String>() {
 
 										@Override
