@@ -21,7 +21,6 @@ import es.client.services.FlickrAuthenticatedServiceAsync;
 import es.shared.IntViews;
 import es.shared.domain.flickr.FlickrAuth;
 import es.shared.domain.flickr.FlickrPhoto;
-import es.shared.domain.flickr.FlickrSize;
 
 public class FlickrUploadView extends Composite {
 
@@ -172,13 +171,13 @@ public class FlickrUploadView extends Composite {
 							filesTable.setWidget(0, 0, new Label("Foto"));
 							filesTable.setWidget(0, 1, new Label("Acción"));
 							int i=1;
-							for (FlickrPhoto actual : result) {
+							for (final FlickrPhoto actual : result) {
 								Button descargar = new Button("Seleccionar");								
 								String link;
-								String toPrint="";
+								/*String toPrint="";
 								for(FlickrSize sz:actual.getSizes()){
-									toPrint+="<a href=\""+sz.getSource()+"\">"+sz.getWidth()+"</a>";
-								}
+									toPrint+="<a href=\""+sz.getSource()+"\"> "+sz.getWidth()+" </a>";
+								}*/
 								String linkOri = actual.getSizes()
 										.get(actual.getSizes().size() - 1)
 										.getSource();
@@ -195,7 +194,15 @@ public class FlickrUploadView extends Composite {
 								filesTable.setWidget(i, 0, new HTML("<a href=\"" + linkOri
 										+ "\"><img alt=\"" + actual.getTitle()
 										+ "\" src=\"" + link + "\"></img> </a>"));
-								filesTable.setWidget(i, 1, new HTML(toPrint));
+								descargar.addClickHandler(new ClickHandler() {
+									public void onClick(ClickEvent event) {
+										String linkBueno=actual.getSizes().get(actual.getSizes().size()-1).getSource();
+										interaccion.addLink(linkBueno);
+										PhotoLoad.go("publishView", interaccion);
+									}
+								});
+								filesTable.setWidget(i, 1, descargar);
+								//filesTable.setWidget(i, 2, new HTML(toPrint));
 								i++;
 							}
 							// panel.add(new HTML(res));
