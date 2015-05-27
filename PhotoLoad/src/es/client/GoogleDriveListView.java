@@ -18,6 +18,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 import es.client.services.GoogleDriveAuthenticatedService;
 import es.client.services.GoogleDriveAuthenticatedServiceAsync;
+import es.shared.IntViews;
 import es.shared.domain.googledrive.FileItem;
 import es.shared.domain.googledrive.Files;
 
@@ -28,11 +29,12 @@ public class GoogleDriveListView extends Composite {
 	private final Label labelAccessToken = new Label("");
 	private final Label labelDownload = new Label("");
 	private final FlexTable filesTable;
+	private IntViews interaccion;
 
 	private final GoogleDriveAuthenticatedServiceAsync googleDriveService = GWT
 			.create(GoogleDriveAuthenticatedService.class);
 
-	public GoogleDriveListView(Map<String, Object> params) {
+	public GoogleDriveListView(IntViews params) {
 
 		mainPanel = new VerticalPanel();
 		initWidget(mainPanel);
