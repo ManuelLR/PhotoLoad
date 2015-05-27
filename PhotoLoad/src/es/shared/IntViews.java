@@ -55,7 +55,9 @@ public class IntViews {
 	public void setLink(List<String> link) {
 		this.link = link;
 	}
-	
+	public void addLink(String link) {
+		this.link.set(0, link);
+	}
 	
 	
 }

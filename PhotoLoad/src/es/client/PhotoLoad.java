@@ -49,7 +49,7 @@ public class PhotoLoad implements EntryPoint {
 		dockPanel.addSouth(new HTML("<center>Pie de página</center>"), 2);
 		dockPanel.addEast(pie(params), 2);
 		
-		if (token=="uploadView"){
+		if (token=="uploadView"){//deprected
 			mainPanel.clear();
 			dockPanel.add(new PublishView(params));
 			mainPanel.add(dockPanel);
@@ -57,7 +57,12 @@ public class PhotoLoad implements EntryPoint {
 			mainPanel.clear();
 			dockPanel.add(new PublishView(params));
 			mainPanel.add(dockPanel);
-		}else if (token=="downloadView" ){
+		}else if(token=="processView"){
+			mainPanel.clear();
+			dockPanel.add(new ProcessView(params));
+			mainPanel.add(dockPanel);			
+		}
+		else if (token=="downloadView" ){//deprecated
 			//NEW WINDOW: p.clear();
 			mainPanel.clear();
 			dockPanel.add(new ProcessView(params));
@@ -78,26 +83,26 @@ public class PhotoLoad implements EntryPoint {
 	}
 	
 	public static Widget cabecera(final IntViews params){
-		Button buttonUpload = new Button("Publica tus fotos !");
-		Button buttonDownload = new Button("Descarga tus fotos !");
+		Button buttonUpload = new Button("Inicio !");
+//		Button buttonDownload = new Button("Descarga tus fotos !");
 		Button buttonInfo = new Button("Acerca de");
 
 		HorizontalPanel cabecera = new HorizontalPanel();
 		cabecera.setWidth("900px"); // Debería ser automático sabiendo justo el tamaño de la ventana del navegador
 		cabecera.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		cabecera.add(buttonUpload);
-		cabecera.add(buttonDownload);
+//		cabecera.add(buttonDownload);
 		cabecera.add(buttonInfo);
 		buttonUpload.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				PhotoLoad.go("uploadView", params);
+				PhotoLoad.go("processView", params);
 			}
 		});
-		buttonDownload.addClickHandler(new ClickHandler() {
+/*		buttonDownload.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				PhotoLoad.go("downloadView", params);
 			}
-		});
+		});*/
 		buttonInfo.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				PhotoLoad.go("info", params);
