@@ -13,7 +13,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TextBox;
@@ -28,7 +27,7 @@ import es.client.services.DropboxAuthenticatedServiceAsync;
 public class DropboxListView extends Composite {
 
 	private static final Auth AUTH = Auth.get();
-	private IntViews intViews = new IntViews();
+	private IntViews intViews;
 	private VerticalPanel mainPanel;
 	private ScrollPanel panelScroll = new ScrollPanel();
 	private final Label labelAccessToken = new Label("");
@@ -39,7 +38,7 @@ public class DropboxListView extends Composite {
 	private final DropboxAuthenticatedServiceAsync dropboxService = GWT
 			.create(DropboxAuthenticatedService.class);
 
-	public DropboxListView(Map<String, Object> params) {
+	public DropboxListView(IntViews params) {
 		initWidget(panelScroll);
 		mainPanel = new VerticalPanel();
 		panelScroll.add(mainPanel);
@@ -53,6 +52,22 @@ public class DropboxListView extends Composite {
 		Button buttonGDFiles = new Button("Obten tus archivos de Dropbox");
 
 		final Label labelGD = new Label("");
+		if (params==null) {
+			intViews  = new IntViews();
+			intViews.setDropboxToken("");
+			Window.alert("El if es true1");
+		} else {
+			intViews = params;
+			if(intViews.getDropboxToken().isEmpty()){
+				intViews  = new IntViews();
+				intViews.setDropboxToken("");
+				Window.alert("El if es true2");
+			}else{
+				Window.alert("El if es false");			
+			}
+		}
+		/*intViews  = new IntViews();
+		intViews.setDropboxToken("");*/
 
 		filesTable = new FlexTable();
 		// TABLE AND HEADER
@@ -143,27 +158,60 @@ public class DropboxListView extends Composite {
 		filesTable.setWidget(0, 1, new Label("Size"));
 		filesTable.setWidget(0, 2, new Label("Date"));
 		filesTable.setWidget(0, 3, new Label("ID"));
-		filesTable.setWidget(0, 4, new Label("Download"));
+		//filesTable.setWidget(0, 4, new Label("Download"));
 
 		if (result != null) {
 			for (final Contents c : result.getContents()) {
 				Button enter = new Button(c.getPath());
-				/*
-				 * enter.addClickHandler(new ClickHandler() {
-				 * 
-				 * @Override public void onClick(ClickEvent event) { // TODO
-				 * Auto-generated method stub
-				 * dropboxService.getFolder(labelAccessToken.getText(),
-				 * c.getPath(), new AsyncCallback<Folder>() {
-				 * 
-				 * @Override public void onFailure(Throwable caught) { // TODO
-				 * Auto-generated method stub
-				 * 
-				 * }
-				 * 
-				 * @Override public void onSuccess(Folder result) { // TODO
-				 * Auto-generated method stub showFiles(result); } }); } });
-				 */
+				
+				if (new Integer((Integer) c.getBytes()) == 0) {
+				  enter.addClickHandler(new ClickHandler() {
+				  
+				  @Override public void onClick(ClickEvent event) { // TODO
+				  //Auto-generated method stub
+				  //dropboxService.getFolder(labelAccessToken.getText(),
+					dropboxService.getFolder(intViews.getDropboxToken(),
+				  c.getPath(), new AsyncCallback<Folder>() {
+				  
+				  @Override public void onFailure(Throwable caught) { // TODO
+				  //Auto-generated method stub
+				  
+				  }
+				  
+				  @Override public void onSuccess(Folder result) { // TODO
+				  //Auto-generated method stub
+					  showFiles(result); } }); } });
+				} else {
+					enter.addClickHandler(new ClickHandler() {
+						
+						@Override
+						public void onClick(ClickEvent event) {
+							// TODO Auto-generated method stub
+							dropboxService.downloadFile(intViews.getDropboxToken(), c.getPath(), new AsyncCallback<String>() {
+
+								@Override
+								public void onFailure(Throwable caught) {
+									// TODO Auto-generated method stub
+									Window.alert("Fallo al descargar");
+								}
+
+								@Override
+								public void onSuccess(String result) {
+									// TODO Auto-generated method stub
+									if (c.getPath().contains(".png") || c.getPath().contains(".jpg")) {
+										intViews.getLink().add(result);
+										afterSelect();
+									//Window.open(result, "", "");
+									} else {
+										Window.alert("No tienes permiso de acceso a este archivo");
+									}
+								}
+							});
+						}
+					});
+					
+				}
+				 
 				filesTable.setWidget(i + 1, 0, enter);
 				filesTable.setWidget(i + 1, 1, new Label(c.getSize()));
 				filesTable.setWidget(i + 1, 2, new Label(c.getModified()));
@@ -199,10 +247,30 @@ public class DropboxListView extends Composite {
 
 					}
 				});
-				filesTable.setWidget(i + 1, 4, downloadButton);
+				//filesTable.setWidget(i + 1, 4, downloadButton);
 
 				i++;
 			}
 		}
 	}
+
+	private void afterSelect() {
+		// TODO Auto-generated method stub
+		mainPanel.clear();
+		mainPanel.add(new Label("Selecciona a donde subir"));
+		Button subirFacebook = new Button("subir a facebook");
+		
+		subirFacebook.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				// TODO Auto-generated method stub
+				intViews.setTo(IntViews.To.FACEBOOK);
+				PhotoLoad.go("uploadView", intViews);
+			}
+		});
+		mainPanel.add(subirFacebook);
+	}
 }
+
+

@@ -11,20 +11,14 @@ public class IntViews {
 		FACEBOOK, DROPBOX, GOOGLEDRIVE, FLICKR
 	}
 	
-	private  String FBToken, DropboxToken, GDToken;
+	private  String FBToken="", DropboxToken="", GDToken="";
 	private  FlickrAuth flickrToken = new FlickrAuth();
 	private  To to;
 	private  List<String> link = new ArrayList<String>();
 	
-	
-	
-	
-	
 	public IntViews() {
 	}
-	
-	
-	
+
 	public String getFBToken() {
 		return FBToken;
 	}
