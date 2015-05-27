@@ -9,7 +9,9 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -19,6 +21,7 @@ import es.client.services.FlickrAuthenticatedServiceAsync;
 import es.shared.IntViews;
 import es.shared.domain.flickr.FlickrAuth;
 import es.shared.domain.flickr.FlickrPhoto;
+import es.shared.domain.flickr.FlickrSize;
 
 public class FlickrUploadView extends Composite {
 
@@ -37,7 +40,7 @@ public class FlickrUploadView extends Composite {
 	private TextBox accessToken = new TextBox();
 	private String urlForGetBaton;
 	
-	private static FlickrAuth auth;
+//	private static FlickrAuth auth;
 
 	public FlickrUploadView(IntViews params) {
 		initWidget(panelScroll);
@@ -107,7 +110,7 @@ public class FlickrUploadView extends Composite {
 	}
 
 	private void afterLogin() {
-		loginViewSucces();
+		loginViewSuccess();
 		buttonFlShow.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				flickrService.getPhotos(interaccion.getFlickrToken(), new AsyncCallback<List<FlickrPhoto>>() {
@@ -136,12 +139,11 @@ public class FlickrUploadView extends Composite {
 		panel.add(buttonFlAuthCont);
 	}
 
-	private void loginViewSucces() {
+	private void loginViewSuccess() {
 		panel.clear();
-		panel.add(new HTML("Te has logueado exitosamente !. Tu token es: "
+		panel.add(new HTML("Te has logueado exitosamente ! Tu token es: "
 				+ accessToken.getText()));
 		panel.add(buttonFlShow);
-
 	}
 
 	private void showPhotos(List<FlickrPhoto> input) {
@@ -149,7 +151,7 @@ public class FlickrUploadView extends Composite {
 		panel.add(buttonFlReturn);
 		buttonFlReturn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				loginViewSucces();
+				loginViewSuccess();
 			}
 		});
 		if (input == null) {
@@ -157,16 +159,26 @@ public class FlickrUploadView extends Composite {
 		} else if (input.isEmpty()) {
 			panel.add(new HTML("No tienes ninguna foto en Flickr"));
 		} else {
-			flickrService.showPhotos(auth, input,
+			flickrService.showPhotos(interaccion.getFlickrToken(), input,
 					new AsyncCallback<List<FlickrPhoto>>() {
 						public void onFailure(Throwable caught) {
 							Window.alert("Error del servidor: "
 									+ caught.toString());
 						}
-
 						public void onSuccess(List<FlickrPhoto> result) {
+							FlexTable filesTable = new FlexTable();
+							panel.add(filesTable);
+							filesTable.getRowFormatter().setStylePrimaryName(0, "firstRow");
+							filesTable.setWidget(0, 0, new Label("Foto"));
+							filesTable.setWidget(0, 1, new Label("Acción"));
+							int i=0;
 							for (FlickrPhoto actual : result) {
+								Button descargar = new Button("Seleccionar");								
 								String link;
+								String toPrint="";
+								for(FlickrSize sz:actual.getSizes()){
+									toPrint+="<a href=\""+sz.getSource()+"\">"+sz.getWidth()+"</a>";
+								}
 								String linkOri = actual.getSizes()
 										.get(actual.getSizes().size() - 1)
 										.getSource();
@@ -175,11 +187,12 @@ public class FlickrUploadView extends Composite {
 								} catch (NullPointerException e) {
 									link = linkOri;
 								}
-								panel.add(new HTML("Foto: " + actual.getTitle()
-										+ "(" + actual.getID() + ")"));
+								/*panel.add(new HTML("Foto: " + actual.getTitle()
+										+ "(" + actual.getID() + ")"));*/
 								panel.add(new HTML("<a href=\"" + linkOri
 										+ "\"><img alt=\"" + actual.getTitle()
 										+ "\" src=\"" + link + "\"></img> </a>"));
+								i++;
 							}
 							// panel.add(new HTML(res));
 							// Window.alert("resultado: "+result);

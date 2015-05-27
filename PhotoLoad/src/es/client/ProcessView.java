@@ -46,6 +46,9 @@ public class ProcessView extends Composite {
 				case FACEBOOK:
 					vertPanel.add(new FacebookUploadView(params));
 					break;
+				case DROPBOX:
+					vertPanel.add(new DropboxUploadView(params));
+					break;
 				default:
 					Window.alert("La acción no está implementada actualmente");
 					break;
@@ -77,7 +80,7 @@ public class ProcessView extends Composite {
 		buttDBDownload.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				vertPanel.clear();
-				vertPanel.add(new DropboxListView(params));
+				vertPanel.add(new DropboxDownloadView(params));
 			}
 		});
 		buttGDDownload.addClickHandler(new ClickHandler() {
