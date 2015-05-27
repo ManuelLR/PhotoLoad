@@ -110,38 +110,42 @@ public class GoogleDriveListView extends Composite {
 
 		if (result != null) {
 			for (final FileItem a : result.getItems()) {
-				filesTable.setWidget(i + 1, 0, new Label(a.getTitle()));
-				filesTable.setWidget(i + 1, 1, new Label(a.getMimeType()));
+				if (a.getMimeType().contains("image")) {
+					filesTable.setWidget(i + 1, 0, new Label(a.getTitle()));
+					filesTable.setWidget(i + 1, 1, new Label(a.getMimeType()));
 
-				Button downloadButton = new Button("Download");
-				downloadButton.addClickHandler(new ClickHandler() {
-					public void onClick(ClickEvent event) {
-						googleDriveService.getFile(labelAccessToken.getText(),
-								a.getId(), new AsyncCallback<FileItem>() {
+					Button downloadButton = new Button("Download");
+					downloadButton.addClickHandler(new ClickHandler() {
+						public void onClick(ClickEvent event) {
+							googleDriveService.getFile(
+									labelAccessToken.getText(), a.getId(),
+									new AsyncCallback<FileItem>() {
 
-									@Override
-									public void onFailure(Throwable caught) {
-										// TODO Auto-generated method stub
-										Window.alert("Aquí falla");
+										@Override
+										public void onFailure(Throwable caught) {
+											// TODO Auto-generated method stub
+											Window.alert("Aquí falla");
 
-									}
+										}
 
-									@Override
-									public void onSuccess(FileItem result) {
-										// TODO Auto-generated method stub
-										Window.alert(result.getWebContentLink()
-												+ " o este otro: "
-												+ result.getDownloadUrl());
-										labelDownload.setText(result
-												.getWebContentLink());
+										@Override
+										public void onSuccess(FileItem result) {
+											// TODO Auto-generated method stub
+											Window.alert(result
+													.getWebContentLink()
+													+ " o este otro: "
+													+ result.getDownloadUrl());
+											labelDownload.setText(result
+													.getWebContentLink());
 
-									}
-								});
-					}
-				});
-				filesTable.setWidget(i + 1, 2, downloadButton);
-				i++;
+										}
+									});
+						}
+					});
+					filesTable.setWidget(i + 1, 2, downloadButton);
+					i++;
 
+				}
 			}
 		}
 	}
