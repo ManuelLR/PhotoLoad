@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.List;
 
 import org.apache.http.entity.mime.MultipartEntity;
-
 import org.apache.http.entity.mime.content.FileBody;
 import org.mortbay.util.ByteArrayOutputStream2;
 import org.scribe.builder.ServiceBuilder;
@@ -17,15 +16,15 @@ import org.scribe.oauth.OAuthService;
 import es.shared.domain.flickr.FlickrAuth;
 import es.shared.domain.flickr.FlickrUploadPhoto;
 
+@SuppressWarnings("deprecation")
 public class FlicUpReso {
 	
-	private OAuthService service;
+	//private OAuthService service;
 	private static final String FLICKR_API_KEY = "1579e0a3ac1b1c2015f630bf0c36b711";
 	private static final String FLICKR_PRIVATE_API_KEY = "f6ed288fd22f97b6";
 	private static final String PROTECTED_UPLOAD_URL="https://up.flickr.com/services/upload/";
 
 
-	@SuppressWarnings("deprecation")
 	public static boolean uploadPhoto(OAuthService service, FlickrAuth auth, List<FlickrUploadPhoto> input){
 		
 		service = new ServiceBuilder().provider(FlickrApi.class)

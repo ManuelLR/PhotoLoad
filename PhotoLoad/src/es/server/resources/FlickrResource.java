@@ -35,12 +35,10 @@ import es.shared.domain.flickr.FlickrPhoto;
 import es.shared.domain.flickr.FlickrSize;
 import es.shared.domain.flickr.FlickrUploadPhoto;
 
-@SuppressWarnings("deprecation")
 public class FlickrResource {
 
 	private static Oauth1 oauth;
 	private static final String RESOURCE_URL = "https://api.flickr.com/services/rest/";
-	private static final String PROTECTED_UPLOAD_URL="https://up.flickr.com/services/upload/";
 	private OAuthService service;
 
 	public FlickrResource() {
@@ -226,7 +224,7 @@ public class FlickrResource {
 		System.out.println(response3.getBody());
 		
 		//ByteArrayOutputStream2 out = new ByteArrayOutputStream2();*/
-		//return FlicUpReso.uploadPhoto(service, auth, input);
-		return false;
+		return FlicUpReso.uploadPhoto(service, auth, input);
+		//return false;
 	}
 }

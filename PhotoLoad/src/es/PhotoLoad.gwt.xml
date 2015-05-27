@@ -20,7 +20,6 @@
   <!-- Other module inherits                                      -->
 	<inherits name="com.google.api.gwt.oauth2.OAuth2" />
 
-
   <!-- Specify the app entry point class.                         -->
   <entry-point class='es.client.PhotoLoad'/>
 

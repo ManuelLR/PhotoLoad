@@ -23,7 +23,6 @@ import es.client.services.FacebookAuthenticatedServiceAsync;
 import es.shared.IntViews;
 import es.shared.domain.facebook.FBDataPhoto;
 import es.shared.domain.facebook.FacebookPhotos;
-import es.shared.domain.facebook.Images;
 
 public class FacebookDownloadView extends Composite {
 

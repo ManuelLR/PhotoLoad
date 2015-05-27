@@ -1,5 +1,7 @@
 package es.client;
 
+import java.util.ArrayList;
+
 import com.google.api.gwt.oauth2.client.Auth;
 import com.google.api.gwt.oauth2.client.AuthRequest;
 import com.google.gwt.core.client.Callback;
@@ -167,7 +169,6 @@ public class FacebookUploadView extends Composite {
 					foto.setURL(linkPhotoUpdate.getText());
 					foto.setName(namePhotoUpdate.getText());
 					facebookService.uploadPhoto(plTextBox.getText(), foto, new AsyncCallback<Struct>(){
-						@Override
 						public void onSuccess(Struct result) {
 							boolean correct= result != null;
 							try{
@@ -176,16 +177,15 @@ public class FacebookUploadView extends Composite {
 								correct =false;}
 							if (correct){
 								Window.alert("Foto subida correctamente");
+								interaccion.setTo(IntViews.To.NONE);
+								interaccion.setLink(new ArrayList<String>());
 								afterLoginView();
 							}else{
 								Window.alert("La foto no se ha podido subir, disculpe las molestias "+helpLoginFacebook());
 							}
 						}
-
-						@Override
 						public void onFailure(Throwable caught) {
 							Window.alert("Ha habido un error: \n"+caught+". \n"+helpLoginFacebook());
-							//helpLoginFacebook();
 						}
 					});	
 
