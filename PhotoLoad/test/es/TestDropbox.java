@@ -16,6 +16,7 @@ import org.apache.commons.io. IOUtils;
 
 
 
+
 import es.shared.domain.dropbox.Contents;
 
 public class TestDropbox {
@@ -23,11 +24,11 @@ public class TestDropbox {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 
-	Contents f = new Contents();
-  	  f.setPath("/15/2.jpg");
-  	  f.setMime_type("image/jpeg");
-  	  System.out.println(f.getPath());
-  	  insertFile(f, "prueba.jpg");
+		Contents f = new Contents();
+	  	  f.setPath("/15/2.txt");
+	  	  f.setMime_type("text/plane");
+	  	  System.out.println(f.getPath());
+	  	  insertFile2(f.getPath(), f, "prueba.txt");
 		
 	}
 	
@@ -54,6 +55,29 @@ public static String insertFile(Contents file, String content) throws IOExceptio
 		}
 		return newId;
 	}
+
+
+public static String insertFile2(String path, Contents file, String content) {
+	String uri = "https://api.dropbox.com/1/metadata/auto";
+	String uri_upload = "https://api-content.dropbox.com/1/files_put/auto";
+	String access_token = "CLUv1uDVmYkAAAAAAAABbrh7w_ORfD_wJQdwZjFWUaBDgC1rdI_2NxdReFdKV4as";
+	ClientResource cr = null;
+	String newId = null;
+	try {
+		cr = new ClientResource(uri + path + "?access_token="+access_token);
+		Contents newFile = cr.post(file,Contents.class);
+		newId = newFile.getPath();
+		
+		cr = new ClientResource(uri_upload + newId+"?access_token="+access_token);
+		Map<String,Object> headers = cr.getRequestAttributes();
+		headers.put("Content-Type", "text/plane");
+		//content = content.
+		cr.put(content);
+	} catch (ResourceException re) {
+		System.err.println("Error when inserting file: " + cr.getResponse().getStatus());
+	}
+	return newId;
+}
 
 
 

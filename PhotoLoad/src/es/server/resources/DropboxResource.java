@@ -1,14 +1,19 @@
 package es.server.resources;
 
+
+import java.util.Map;
+
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
 
+import es.shared.domain.dropbox.Contents;
 import es.shared.domain.dropbox.Folder;
 
 public class DropboxResource {
 
-	private String uri 			= "https://api.dropbox.com/1/metadata/auto/";
+	private String uri 			= "https://api.dropbox.com/1/metadata/auto";
 	private String uriDown 			= "https://api-content.dropbox.com/1/files/auto";
+	private String uri_upload = "https://api-content.dropbox.com/1/files_put/auto";
 
 	private String access_token;
 	
@@ -49,5 +54,25 @@ public class DropboxResource {
 			System.err.println("Error when retrieving all files: " + cr.getResponse().getStatus());
 		}
 		return res;
+	}
+	
+	
+	public String insertFile(String path, Contents file, String content) {
+		ClientResource cr = null;
+		String newId = null;
+		try {
+			cr = new ClientResource(uri + path + "?access_token="+access_token);
+			Contents newFile = cr.post(file,Contents.class);
+			newId = newFile.getPath();
+			
+			cr = new ClientResource(uri_upload + newId+"?access_token="+access_token);
+			Map<String,Object> headers = cr.getRequestAttributes();
+			headers.put("Content-Type", "text/plane");
+			//content = content.
+			cr.put(content);
+		} catch (ResourceException re) {
+			System.err.println("Error when inserting file: " + cr.getResponse().getStatus());
+		}
+		return newId;
 	}
 }

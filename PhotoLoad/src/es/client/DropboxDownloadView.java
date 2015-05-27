@@ -1,6 +1,5 @@
 package es.client;
 
-import java.util.Map;
 
 import com.google.api.gwt.oauth2.client.Auth;
 import com.google.api.gwt.oauth2.client.AuthRequest;
@@ -24,13 +23,13 @@ import es.shared.domain.dropbox.Folder;
 import es.client.services.DropboxAuthenticatedService;
 import es.client.services.DropboxAuthenticatedServiceAsync;
 
-public class DropboxListView extends Composite {
+public class DropboxDownloadView extends Composite {
 
 	private static final Auth AUTH = Auth.get();
 	private IntViews intViews;
 	private VerticalPanel mainPanel;
 	private ScrollPanel panelScroll = new ScrollPanel();
-	private final Label labelAccessToken = new Label("");
+	//private final Label labelAccessToken = new Label("");
 	private final FlexTable filesTable;
 
 	final TextBox plTextBox = new TextBox();
@@ -38,7 +37,7 @@ public class DropboxListView extends Composite {
 	private final DropboxAuthenticatedServiceAsync dropboxService = GWT
 			.create(DropboxAuthenticatedService.class);
 
-	public DropboxListView(IntViews params) {
+	public DropboxDownloadView(IntViews params) {
 		initWidget(panelScroll);
 		mainPanel = new VerticalPanel();
 		panelScroll.add(mainPanel);
@@ -195,7 +194,7 @@ public class DropboxListView extends Composite {
 								public void onSuccess(String result) {
 									// TODO Auto-generated method stub
 									if (c.getPath().contains(".png") || c.getPath().contains(".jpg")) {
-										intViews.getLink().add(result);
+										intViews.addLink(result);
 										afterSelect();
 									//Window.open(result, "", "");
 									} else {
