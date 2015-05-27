@@ -47,23 +47,19 @@ public class DropboxListView extends Composite {
 		final String DROPBOX_URL = "https://www.dropbox.com/1/oauth2/authorize";
 		final String DROPBOX_ID = "t9zcgs18eplaqm4";
 
-		Button buttonGD = new Button("Por favor, inicie sesión en Dropbox");
+		Button buttonDB = new Button("Por favor, inicie sesión en Dropbox");
 		
-		Button buttonGDFiles = new Button("Obten tus archivos de Dropbox");
+		Button buttonDBFiles = new Button("Obten tus archivos de Dropbox");
 
-		final Label labelGD = new Label("");
+		final Label labelDB = new Label("");
 		if (params==null) {
 			intViews  = new IntViews();
 			intViews.setDropboxToken("");
-			Window.alert("El if es true1");
 		} else {
 			intViews = params;
 			if(intViews.getDropboxToken().isEmpty()){
 				intViews  = new IntViews();
 				intViews.setDropboxToken("");
-				Window.alert("El if es true2");
-			}else{
-				Window.alert("El if es false");			
 			}
 		}
 		/*intViews  = new IntViews();
@@ -79,7 +75,7 @@ public class DropboxListView extends Composite {
 		filesTable.setWidget(0, 3, new Label("ID"));
 		filesTable.setWidget(0, 4, new Label("Download"));
 
-		buttonGD.addClickHandler(new ClickHandler() {
+		buttonDB.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
 				final AuthRequest req = new AuthRequest(DROPBOX_URL, DROPBOX_ID);
@@ -104,7 +100,7 @@ public class DropboxListView extends Composite {
 			}
 		});
 
-		buttonGDFiles.addClickHandler(new ClickHandler() {
+		buttonDBFiles.addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
@@ -136,14 +132,14 @@ public class DropboxListView extends Composite {
 
 		Label label = new Label(intViews.getDropboxToken());
 		
-		mainPanel.add(buttonGD);
+		mainPanel.add(buttonDB);
 		//mainPanel.add(new Label("Escriba aqui la ruta de la carpeta (si lo dejas en blanco ira a la raiz)"));
 		mainPanel.add(plTextBox);
-		mainPanel.add(labelGD);
+		mainPanel.add(labelDB);
 		//mainPanel.add(labelAccessToken);
 		mainPanel.add(label);
 		//mainPanel.add(new HTML(intViews.getDropboxToken()));
-		mainPanel.add(buttonGDFiles);
+		mainPanel.add(buttonDBFiles);
 		mainPanel.add(filesTable);
 		// mainPanel.add(newFileButton);
 	}
@@ -256,7 +252,10 @@ public class DropboxListView extends Composite {
 
 	private void afterSelect() {
 		// TODO Auto-generated method stub
-		mainPanel.clear();
+		PhotoLoad.go("publishView", intViews);
+		
+		
+		/*mainPanel.clear();
 		mainPanel.add(new Label("Selecciona a donde subir"));
 		Button subirFacebook = new Button("subir a facebook");
 		
@@ -269,7 +268,7 @@ public class DropboxListView extends Composite {
 				PhotoLoad.go("uploadView", intViews);
 			}
 		});
-		mainPanel.add(subirFacebook);
+		mainPanel.add(subirFacebook);*/
 	}
 }
 

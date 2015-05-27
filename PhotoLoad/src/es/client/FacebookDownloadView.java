@@ -11,7 +11,10 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -30,6 +33,9 @@ public class FacebookDownloadView extends Composite {
 	private	final String FACEBOOKCLIENT_ID = "652936521517274";
 	private static final Auth AUTH 	= Auth.get();
 	private final VerticalPanel 	mainPanelDownload;
+	private final FlexTable filesTable = new FlexTable();
+
+
 	private ScrollPanel panelScroll = new ScrollPanel();
 	private IntViews interaccion;
 	//final Label labelAccessToken	= new Label("");
@@ -111,6 +117,13 @@ public class FacebookDownloadView extends Composite {
 
 
 	void photosView(FacebookPhotos result){
+		int i = 0;
+				
+		filesTable.setStylePrimaryName("filesTable");
+		filesTable.getRowFormatter().setStylePrimaryName(0, "firstRow");
+		filesTable.setWidget(0, 0, new Label("Foto"));
+		filesTable.setWidget(0, 1, new Label("Seleccionar"));
+
 		mainPanelDownload.clear();
 		//mainPanelDownload.add(new HTML("<h1> Descarga tus fotos ! </h1>"));
 		Button refresh =  new Button("Refrescar");
@@ -120,19 +133,24 @@ public class FacebookDownloadView extends Composite {
 		});
 		
 		mainPanelDownload.add(refresh);
-		String output="<fieldset>";
-		output += "<legend>Facebook Photos</legend>";
+		String output;
+		//output += "<legend>Facebook Photos</legend>";
 		if (result != null && !result.getData().isEmpty()) {
 			for (FBDataPhoto a: result.getData()) {
-				output +="<span> <a href=\""+a.getLink()+"\"><img src=\"" + a.getPicture()+"\" alt=\""+ a.getName()+" ("+a.getId()+")\"></a></span><br/>";
+				Button descargar = new Button("Seleccionar");
+				output ="<span> <a href=\""+a.getLink()+"\"><img src=\"" + a.getPicture()+"\" alt=\""+ a.getName()+" ("+a.getId()+")\"></a></span><br/>";
+				filesTable.setWidget(i+1, 0, new HTML(output));
+				filesTable.setWidget(i+1, 1, descargar);
+				i ++;
 			}
 		}else{
-			output="<span> No results </span>";
-			output+= "\n <p>"+helpLoginFacebook()+"</p>";
+			/*output="<span> No results </span>";
+			output+= "\n <p>"+helpLoginFacebook()+"</p>";*/
 		}
-		output +="</fieldset>";
-		HTML friends = new HTML(output);
-		mainPanelDownload.add(friends);
+		//output +="</fieldset>";
+		//HTML friends = new HTML(output);
+		//mainPanelDownload.add(friends);
+		mainPanelDownload.add(filesTable);
 	}
 }
 
