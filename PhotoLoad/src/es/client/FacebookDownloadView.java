@@ -119,10 +119,7 @@ public class FacebookDownloadView extends Composite {
 	void photosView(FacebookPhotos result){
 		int i = 0;
 				
-		filesTable.setStylePrimaryName("filesTable");
-		filesTable.getRowFormatter().setStylePrimaryName(0, "firstRow");
-		filesTable.setWidget(0, 0, new Label("Foto"));
-		filesTable.setWidget(0, 1, new Label("Acción"));
+
 
 		mainPanelDownload.clear();
 		Button refresh =  new Button("Refrescar");
@@ -133,6 +130,12 @@ public class FacebookDownloadView extends Composite {
 		interaccion.setFBToken(plTextBox.getText());
 		mainPanelDownload.add(refresh);
 		if (result != null && !result.getData().isEmpty()) {
+			filesTable.setStylePrimaryName("filesTable");
+			filesTable.getRowFormatter().setStylePrimaryName(0, "firstRow");
+			filesTable.setWidget(0, 0, new Label("Foto"));
+			filesTable.setWidget(0, 1, new Label("Acción"));
+			
+			
 			for (FBDataPhoto a: result.getData()) {
 				Button descargar = new Button("Seleccionar");
 				final String link=a.getImages().get(0).getSource();
@@ -149,15 +152,17 @@ public class FacebookDownloadView extends Composite {
 				//filesTable.setWidget(i+1, 2, new HTML(link));
 
 				i ++;
+				
 			}
+			mainPanelDownload.add(filesTable);
 		}else{
-			/*output="<span> No results </span>";
-			output+= "\n <p>"+helpLoginFacebook()+"</p>";*/
+			String output="<span> No results </span>";
+			output+= "\n <p>"+helpLoginFacebook()+"</p>";
+			mainPanelDownload.add(new HTML(output));
 		}
 		//output +="</fieldset>";
 		//HTML friends = new HTML(output);
 		//mainPanelDownload.add(friends);
-		mainPanelDownload.add(filesTable);
 	}
 }
 

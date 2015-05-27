@@ -8,6 +8,7 @@ import es.client.services.FlickrAuthenticatedService;
 import es.server.resources.FlickrResource;
 import es.shared.domain.flickr.FlickrAuth;
 import es.shared.domain.flickr.FlickrPhoto;
+import es.shared.domain.flickr.FlickrUploadPhoto;
 
 
 public class FlickrAuthenticatedServiceImpl extends RemoteServiceServlet implements FlickrAuthenticatedService{
@@ -41,5 +42,12 @@ public class FlickrAuthenticatedServiceImpl extends RemoteServiceServlet impleme
 	public List<FlickrPhoto> showPhotos(FlickrAuth auth, List<FlickrPhoto> toShow) {
 		// TODO Auto-generated method stub
 		return flr.showPhotos(auth, toShow);
+	}
+
+	@Override
+	public boolean uploadPhotos(FlickrAuth auth,
+			List<FlickrUploadPhoto> toUpload) {
+		// TODO Auto-generated method stub
+		return flr.uploadPhotos(auth, toUpload);
 	}
 }

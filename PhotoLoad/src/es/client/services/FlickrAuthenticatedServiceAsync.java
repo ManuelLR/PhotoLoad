@@ -6,6 +6,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import es.shared.domain.flickr.FlickrAuth;
 import es.shared.domain.flickr.FlickrPhoto;
+import es.shared.domain.flickr.FlickrUploadPhoto;
 
 public interface FlickrAuthenticatedServiceAsync {
 
@@ -14,6 +15,8 @@ public interface FlickrAuthenticatedServiceAsync {
 	void getPhotos(FlickrAuth auth, AsyncCallback<List<FlickrPhoto>> callback);
 	void showPhotos(FlickrAuth auth, List<FlickrPhoto> toShow,
 			AsyncCallback<List<FlickrPhoto>> callback);
+	void uploadPhotos(FlickrAuth auth, List<FlickrUploadPhoto> toUpload,
+			AsyncCallback<Boolean> callback);
 
 
 }

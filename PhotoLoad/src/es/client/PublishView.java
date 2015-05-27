@@ -17,6 +17,7 @@ public class PublishView extends Composite {
 	
 	Button buttFBUpload = new Button("Sube a Facebook");
 	Button buttDBUpload = new Button("Sube a Dropbox (en pruebas)");
+	Button buttFkUpload = new Button("Sube a Flickr (en pruebas)");
 
 	public PublishView(IntViews params) {
 		// TODO Auto-generated constructor stub
@@ -31,6 +32,7 @@ public class PublishView extends Composite {
 		
 		vertPanel.add(buttFBUpload);
 		vertPanel.add(buttDBUpload);
+		vertPanel.add(buttFkUpload);
 		
 /*		splitPanel = new SplitLayoutPanel();
 		//initWidget(splitPanel);
@@ -52,6 +54,15 @@ public class PublishView extends Composite {
 			public void onClick(ClickEvent event) {
 				// TODO Auto-generated method stub
 				params.setTo(IntViews.To.DROPBOX);
+				vertPanel.clear();
+				//vertPanel.add(new DropboxUploadView(params));
+				PhotoLoad.go("processView", params);
+			}
+		});
+		buttFkUpload.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				// TODO Auto-generated method stub
+				params.setTo(IntViews.To.FLICKR);
 				vertPanel.clear();
 				//vertPanel.add(new DropboxUploadView(params));
 				PhotoLoad.go("processView", params);

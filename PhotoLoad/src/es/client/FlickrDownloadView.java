@@ -23,7 +23,7 @@ import es.shared.IntViews;
 import es.shared.domain.flickr.FlickrAuth;
 import es.shared.domain.flickr.FlickrPhoto;
 
-public class FlickrUploadView extends Composite {
+public class FlickrDownloadView extends Composite {
 
 	private final FlickrAuthenticatedServiceAsync flickrService = GWT
 			.create(FlickrAuthenticatedService.class);
@@ -43,7 +43,7 @@ public class FlickrUploadView extends Composite {
 	
 //	private static FlickrAuth auth;
 
-	public FlickrUploadView(IntViews params) {
+	public FlickrDownloadView(IntViews params) {
 		initWidget(panelScroll);
 		panelScroll.add(panel);
 		
