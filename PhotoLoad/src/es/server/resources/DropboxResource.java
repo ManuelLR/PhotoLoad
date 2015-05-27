@@ -61,13 +61,13 @@ public class DropboxResource {
 		ClientResource cr = null;
 		String newId = null;
 		try {
-			cr = new ClientResource(uri + path + "?access_token="+access_token);
+			/*cr = new ClientResource(uri + path + "?access_token="+access_token);
 			Contents newFile = cr.post(file,Contents.class);
-			newId = newFile.getPath();
+			newId = newFile.getPath();*/
 			
-			cr = new ClientResource(uri_upload + newId+"?access_token="+access_token);
-			Map<String,Object> headers = cr.getRequestAttributes();
-			headers.put("Content-Type", "text/plane");
+			cr = new ClientResource(uri_upload + path+"?access_token="+access_token);
+			/*Map<String,Object> headers = cr.getRequestAttributes();
+			headers.put("Content-Type", "text/plane");*/
 			//content = content.
 			cr.put(content);
 		} catch (ResourceException re) {

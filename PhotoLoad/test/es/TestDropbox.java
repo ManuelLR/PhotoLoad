@@ -25,10 +25,10 @@ public class TestDropbox {
 		// TODO Auto-generated method stub
 
 		Contents f = new Contents();
-	  	  f.setPath("/15/2.txt");
+	  	  f.setPath("/15/holitaaa.txt");
 	  	  f.setMime_type("text/plane");
 	  	  System.out.println(f.getPath());
-	  	  insertFile2(f.getPath(), f, "prueba.txt");
+	  	  insertFile2(f.getPath(), f, "pruebaaaaaaaaa213.txt");
 		
 	}
 	
@@ -64,13 +64,14 @@ public static String insertFile2(String path, Contents file, String content) {
 	ClientResource cr = null;
 	String newId = null;
 	try {
-		cr = new ClientResource(uri + path + "?access_token="+access_token);
+		/*cr = new ClientResource(uri + "?access_token="+access_token);
 		Contents newFile = cr.post(file,Contents.class);
 		newId = newFile.getPath();
+		System.out.println(newId);*/
 		
-		cr = new ClientResource(uri_upload + newId+"?access_token="+access_token);
-		Map<String,Object> headers = cr.getRequestAttributes();
-		headers.put("Content-Type", "text/plane");
+		cr = new ClientResource(uri_upload + path+"?access_token="+access_token);
+		//Map<String,Object> headers = cr.getRequestAttributes();
+		//headers.put("Content-Type", "text/plane");
 		//content = content.
 		cr.put(content);
 	} catch (ResourceException re) {
