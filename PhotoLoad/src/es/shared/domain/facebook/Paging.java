@@ -13,7 +13,7 @@ public class Paging implements Serializable{
 	
 	private static final long serialVersionUID = -7307874555330985480L;
 	private String next;
-	private CursorsFB cursors;
+//	private CursorsFB cursors;
 	//private CursorsFB cursorsFB;
 
  	public String getNext(){

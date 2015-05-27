@@ -178,7 +178,7 @@ public class FacebookUploadView extends Composite {
 								Window.alert("Foto subida correctamente");
 								afterLoginView();
 							}else{
-								Window.alert("La foto no se ha podido subir, disculpe las molestias");
+								Window.alert("La foto no se ha podido subir, disculpe las molestias "+helpLoginFacebook());
 							}
 						}
 

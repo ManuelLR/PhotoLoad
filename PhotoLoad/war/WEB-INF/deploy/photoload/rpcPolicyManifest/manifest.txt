@@ -2,4 +2,5 @@
 # RPC service class, partial path of RPC policy file
 es.client.services.DropboxAuthenticatedService, B25C6B04BD1A10304851DE77A29EC2B2.gwt.rpc
 es.client.services.FlickrAuthenticatedService, 1F5BDA8799658DE26951E3212C51D426.gwt.rpc
-es.client.services.FacebookAuthenticatedService, DECCC6C14B3FE75484129E5D6095D40A.gwt.rpc
+es.client.services.GoogleDriveAuthenticatedService, 16F66A371CD4250BEAD35FC4CAD8A605.gwt.rpc
+es.client.services.FacebookAuthenticatedService, 4A416868E977A58E8C39E30B8C498C4B.gwt.rpc
