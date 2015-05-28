@@ -48,9 +48,8 @@ public class FacebookDownloadView extends Composite {
 		mainPanelDownload=new VerticalPanel();
 		initWidget(panelScroll);
 		panelScroll.add(mainPanelDownload);	
-			
+		interaccion=params;
 		if(params.getFBToken().isEmpty()){
-			interaccion=new IntViews();
 			loginView();			
 		}else{
 			plTextBox.setText(params.getFBToken());
@@ -92,6 +91,7 @@ public class FacebookDownloadView extends Composite {
 		contain += "";
 		return (contain);
 	}
+	
 	private void afterLoginView(){
 		mainPanelDownload.clear();
 		//mainPanelDownload.add(new HTML("<h1> Descarga tus fotos ! </h1>"));
