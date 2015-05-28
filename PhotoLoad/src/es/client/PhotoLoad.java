@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 import es.shared.IntViews;
@@ -45,9 +46,9 @@ public class PhotoLoad implements EntryPoint {
 	public static void go(String token, IntViews params){
 		RootLayoutPanel mainPanel = RootLayoutPanel.get();
 		DockLayoutPanel dockPanel = new DockLayoutPanel(Unit.EM);
-		dockPanel.addNorth(cabecera(params), 2);
-		dockPanel.addSouth(new HTML("<center>Pie de página</center>"), 2);
-		dockPanel.addEast(pie(params), 2);
+		dockPanel.addNorth(cabecera(params), 3);
+		dockPanel.addSouth(pie(params), 2);
+		dockPanel.addEast(lateralDrcho(params), 2);
 		
 		if (token=="uploadView"){//deprected
 			mainPanel.clear();
@@ -77,25 +78,36 @@ public class PhotoLoad implements EntryPoint {
 			mainPanel.add(dockPanel);
 		}
 	}
+	public static Widget lateralDrcho(IntViews params){
+		
+		return new HTML("P</br></br>H</br></br>O</br></br>T</br></br>O</br></br>L</br></br>O</br></br>A</br></br>D</br></br>");
+	}
 	public static Widget pie(IntViews params){
 		
-		return new HTML("Por este lateral deberían ir los logos!  ! ! !");
+		return new HTML("<center><b>Realizado por:</b> Manuel López Ruiz, Miguel Rodríguez Caballero y David Tinoco Castillo</center>");
 	}
 	
 	public static Widget cabecera(final IntViews params){
 		Button buttonUpload = new Button("Inicio !");
 //		Button buttonDownload = new Button("Descarga tus fotos !");
 		Button buttonInfo = new Button("Acerca de");
-
+		VerticalPanel cabeceraVert = new VerticalPanel();
+		cabeceraVert.setWidth(params.getAnchoAbsoluto());
+		cabeceraVert.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		HorizontalPanel cabecera = new HorizontalPanel();
-		cabecera.setWidth("900px"); // Debería ser automático sabiendo justo el tamaño de la ventana del navegador
+		cabecera.setWidth(params.getAnchoAbsoluto()); // Debería ser automático sabiendo justo el tamaño de la ventana del navegador
+		cabecera.setHeight("200px");
 		cabecera.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		cabecera.add(buttonUpload);
+		cabecera.add(new HTML("<img src=\"/files/logoAjustado.png\" style=\"width: 25px\">"));
+//		cabecera.add(new HTML("<div id=\"foto\" style=\"text-align:center; margin:0px auto;\"><img src=\"/files/logoAjustado.png\" style=\"width: 10px\"></div>"));
+		HorizontalPanel cabeceraInt = new HorizontalPanel();
+
+		cabeceraInt.add(buttonUpload);
 //		cabecera.add(buttonDownload);
-		cabecera.add(buttonInfo);
+		cabeceraInt.add(buttonInfo);
 		buttonUpload.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				PhotoLoad.go("processView", params);
+				PhotoLoad.go("loginView", params);
 			}
 		});
 /*		buttonDownload.addClickHandler(new ClickHandler() {
@@ -108,6 +120,9 @@ public class PhotoLoad implements EntryPoint {
 				PhotoLoad.go("info", params);
 			}
 		});
-		return cabecera;
+		cabecera.add(cabeceraInt);
+		cabeceraVert.add(cabecera);
+		cabeceraVert.add(new HTML("linea en blanco sin estar en blanco"));
+		return cabeceraVert;
 	}
 }

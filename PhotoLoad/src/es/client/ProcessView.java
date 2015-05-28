@@ -25,7 +25,7 @@ public class ProcessView extends Composite {
 		// TODO Auto-generated constructor stub
 		
 		vertPanel= new VerticalPanel();
-		//vertPanel.setWidth("900px");
+		vertPanel.setWidth(params.getAnchoRelativo());
 		vertPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		initWidget(vertPanel);
 		

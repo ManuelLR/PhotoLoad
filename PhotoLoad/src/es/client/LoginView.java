@@ -20,7 +20,7 @@ public class LoginView extends Composite {
 	public LoginView(IntViews params) {
 		// TODO Auto-generated constructor stub
 		verPanel=new VerticalPanel();
-		verPanel.setWidth("900px"); // Debería ser automático sabiendo justo el tamaño de la ventana del navegador
+		verPanel.setWidth(params.getAnchoAbsoluto()); // Debería ser automático sabiendo justo el tamaño de la ventana del navegador
 		verPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		initWidget(verPanel);
 		verPanel.add(new HTML("<h1> Bienvenido a Photoload ! ! ! </h1>"));

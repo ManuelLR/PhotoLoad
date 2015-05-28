@@ -15,6 +15,7 @@ public class IntViews {
 	private  FlickrAuth flickrToken = null;
 	private  To to= To.NONE;
 	private  List<String> link = new ArrayList<String>();
+	private String anchoAbsoluto="1366px", anchoRelativo="1366px";
 	
 	public IntViews() {
 	}
@@ -61,6 +62,22 @@ public class IntViews {
 		}else{
 			this.link.set(0, link);
 		}
+	}
+
+	public String getAnchoAbsoluto() {
+		return anchoAbsoluto;
+	}
+
+	public String getAnchoRelativo() {
+		return anchoRelativo;
+	}
+
+	public void setAnchoAbsoluto(String anchoAutomatico) {
+		this.anchoAbsoluto = anchoAutomatico;
+	}
+
+	public void setAnchoRelativo(String anchoRelativo) {
+		this.anchoRelativo = anchoRelativo;
 	}
 	
 	

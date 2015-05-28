@@ -22,8 +22,8 @@ public class InfoView extends Composite {
 	private void principalInfo() {
 		// TODO Auto-generated method stub
 		panel.add(new HTML(
-				"<div id=\"foto\" style=\"text-align:center; margin:40px auto;\"><img src=\"/files/logoAjustado.png\" style=\"width: 10%\"></div>"));
-		panel.add(new HTML("<div id=\"titulo\" style=\"margin: -60px auto;\"><h1> PhotoLoad </h1></div>"));
+				"<div id=\"foto\" style=\"text-align:center; margin:0px auto;\"><img src=\"/files/logoAjustado.png\" style=\"width: 10%\"></div>"));
+		panel.add(new HTML("<div id=\"titulo\" style=\"margin: 0px auto;\"><h1> PhotoLoad </h1></div>"));
 		panel.add(description());
 		
 		
@@ -55,8 +55,18 @@ public class InfoView extends Composite {
 				+ " <li><a href=\"https://manuejemploaiss2.appspot.com\">FlickR</a></li> </ul>"
 				+ " </div>";
 		
-		result += "<div id=\"realizadoPor\" style=\"font-size:large; width:88%; margin: 0 auto;\">";
-		result+="<h2>Trabajo realizado por: </h2>";
+		result+="<div class=\"title\" style=\"width:90%; margin: 0 auto;\"><h2>Api Rest</h2></div>";
+		result+="<div id=\"Api Rest\" style=\"font-size:medium; width:90%; margin: 0 auto;\"><p>";
+		result+="La URI principal será http://etsiiphotoload.appspot.com/api/photo";
+		result+="</p><table border=\"1\" style=\"text-align:center;\">";
+		result+="<tr bgcolor=\"#6FBEFB\"><th style=\"border: 1px solid black; border-collapse: collapse;\">HTTP</th><th>Plantilla URI</th><th>Descripción</th></tr>";
+		result+="<tr><td>POST</td><td>/foto</td><td align=\"justify\">Añade una nueva foto.</br>Si se añade correctamente devuelve un mensaje “201 Uploaded”.</br>Si ocurre algún error devuelve “400 Error”.</td><tr>";
+		result+="<tr bgcolor=\"#6FBEFB\"><td>POST</td><td>/foto</td><td align=\"justify\">Añade una nueva foto.</br>Si se añade correctamente devuelve un mensaje “201 Uploaded”.</br>Si ocurre algún error devuelve “400 Error”.</td><tr>";
+		result+="</table></div>";
+		
+		
+		result+="<div class=\"title\" style=\"width:90%; margin: 0 auto;\"><h2>Trabajo realizado por: </h2></div>";		
+		result += "<div id=\"realizadoPor\" style=\"font-size:large; width:90%; margin: 0 auto;\">";
 		result+="<ul>";
 		result+="<li>David Tinoco Castillo</li>";
 		result+="<li>Manuel López Ruiz</li>";
