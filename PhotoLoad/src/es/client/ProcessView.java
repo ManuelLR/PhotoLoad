@@ -44,7 +44,9 @@ public class ProcessView extends Composite {
 				vertPanel.add(buttGDDownload);
 				String tokensActuales="Actualmente los token guardados son: <ul>";
 				tokensActuales +="<li>FB: "+params.getFBToken()+"</li>";
-				tokensActuales +="<li>Flickr: "+params.getFlickrToken().getRequestToken()+"</li>";
+				if(params.getFlickrToken()!=null){
+					tokensActuales +="<li>Flickr: "+params.getFlickrToken().getRequestToken()+"</li>";
+				}
 				tokensActuales +="<li>DB: "+params.getDropboxToken()+"</li>";
 				tokensActuales +="<li>GD: "+params.getGDToken()+"</li>";
 				tokensActuales +="</ul>";
