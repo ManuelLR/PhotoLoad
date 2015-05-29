@@ -106,7 +106,8 @@ public class FacebookDownloadView extends Composite {
 				if (plTextBox.getText() == "" || plTextBox.getText().isEmpty()) {
 					Window.alert("Please, login before getting Photos List");
 				} else {
-					facebookService.findPhotos(plTextBox.getText(),
+					interaccion.setFBToken(plTextBox.getText());
+					facebookService.findPhotos(interaccion.getFBToken(),
 							new AsyncCallback<FacebookPhotos>() {
 								public void onSuccess(FacebookPhotos result) {
 									photosView(result);
@@ -161,21 +162,14 @@ public class FacebookDownloadView extends Composite {
 						+ ")\"></a></span><br/>";
 				filesTable.setWidget(i + 1, 0, new HTML(output));
 				filesTable.setWidget(i + 1, 1, descargar);
-				// filesTable.setWidget(i+1, 2, new HTML(link));
-
 				i++;
-
 			}
-			//testPanel.add(filesTable);
-			//mainPanelDownload.add(testPanel);
 			mainPanelDownload.add(filesTable);
 		} else {
 			String output = "<span> No results </span>";
 			output += "\n <p>" + helpLoginFacebook() + "</p>";
 			mainPanelDownload.add(new HTML(output));
 		}
-		// output +="</fieldset>";
-		// HTML friends = new HTML(output);
-		// mainPanelDownload.add(friends);
+
 	}
 }

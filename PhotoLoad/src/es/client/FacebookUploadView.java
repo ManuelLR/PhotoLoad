@@ -71,28 +71,6 @@ public class FacebookUploadView extends Composite {
 			interaccion = new IntViews();
 		}
 	}
-
-	
-	public void showPhotos(FacebookPhotos result){
-		String output="<fieldset>";
-		output += "<legend>Facebook Photos</legend>";
-		if (result != null) {
-			/*if(result.getData().isEmpty()){
-				helpLoginFacebook();
-			}else{*/
-			for (FBDataPhoto a: result.getData()) {
-//				output +="<span>" +  a.getName() + "</span><br/>";
-				output +="<span> <a href=\""+a.getLink()+"\"><img src=\"" + a.getPicture()+"\" alt=\""+ a.getName()+" ("+a.getId()+")\"></a></span><br/>";
-
-		}//}
-		}else{
-			output="<span> No results </span>";
-			helpLoginFacebook();
-		}
-		output +="</fieldset>";
-		HTML friends = new HTML(output);
-		mainPanelUpload.add(friends);
-	}
 	
 	private void loginView(){
 		mainPanelUpload.clear();
@@ -166,7 +144,8 @@ public class FacebookUploadView extends Composite {
 								Window.alert("Foto subida correctamente");
 								interaccion.setTo(IntViews.To.NONE);
 								interaccion.setLink(new ArrayList<String>());
-								afterLoginView();
+								//afterLoginView();
+								PhotoLoad.go("loginView", interaccion);
 							}else{
 								Window.alert("La foto no se ha podido subir, disculpe las molestias "+helpLoginFacebook());
 							}
