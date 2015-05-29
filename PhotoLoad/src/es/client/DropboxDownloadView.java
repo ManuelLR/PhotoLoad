@@ -13,7 +13,6 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import es.shared.IntViews;
@@ -31,7 +30,6 @@ public class DropboxDownloadView extends Composite {
 	// private final Label labelAccessToken = new Label("");
 	private final FlexTable filesTable;
 
-	final TextBox plTextBox = new TextBox();
 
 	private final DropboxAuthenticatedServiceAsync dropboxService = GWT
 			.create(DropboxAuthenticatedService.class);
@@ -45,6 +43,9 @@ public class DropboxDownloadView extends Composite {
 		final String DROPBOX_URL = "https://www.dropbox.com/1/oauth2/authorize";
 		final String DROPBOX_ID = "t9zcgs18eplaqm4";
 
+		final Label label = new Label();
+		
+		
 		Button buttonDB = new Button("Por favor, inicie sesión en Dropbox");
 
 		Button buttonDBFiles = new Button("Obten tus archivos de Dropbox");
@@ -90,6 +91,7 @@ public class DropboxDownloadView extends Composite {
 						// TODO Auto-generated method stub
 						// labelAccessToken.setText(result);
 						intViews.setDropboxToken(result);
+						label.setText(result);
 						Window.alert("perfecto, este es su Token: "
 						// + labelAccessToken.getText());
 								+ intViews.getDropboxToken());
@@ -108,7 +110,7 @@ public class DropboxDownloadView extends Composite {
 				else {
 					// dropboxService.getFolder(labelAccessToken.getText(),
 					dropboxService.getFolder(intViews.getDropboxToken(),
-							plTextBox.getText(), new AsyncCallback<Folder>() {
+							"", new AsyncCallback<Folder>() {
 
 								@Override
 								public void onFailure(Throwable caught) {
@@ -127,12 +129,11 @@ public class DropboxDownloadView extends Composite {
 			}
 		});
 
-		Label label = new Label(intViews.getDropboxToken());
+		
 
 		mainPanel.add(buttonDB);
 		// mainPanel.add(new
 		// Label("Escriba aqui la ruta de la carpeta (si lo dejas en blanco ira a la raiz)"));
-		mainPanel.add(plTextBox);
 		mainPanel.add(labelDB);
 		// mainPanel.add(labelAccessToken);
 		mainPanel.add(label);
