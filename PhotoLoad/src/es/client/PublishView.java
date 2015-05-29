@@ -2,6 +2,7 @@ package es.client;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
@@ -15,15 +16,15 @@ public class PublishView extends Composite {
 
 	private VerticalPanel vertPanel;
 	
-	Button buttFBUpload = new Button("Sube a Facebook");
+	Button buttFBUpload = new Button("Sube a Facebook (no válido para Google Drive)");
 	Button buttDBUpload = new Button("Sube a Dropbox (en pruebas)");
-	Button buttFkUpload = new Button("Sube a Flickr (en pruebas)");
+	Button buttFkUpload = new Button("Sube a Flickr (solo funcional en consola y por local)");
+	Button buttDoComp = new Button("Descarga al ordenador");
 
 	public PublishView(IntViews params) {
-		// TODO Auto-generated constructor stub
 		
 		vertPanel= new VerticalPanel();
-		//vertPanel.setWidth("900px");
+		vertPanel.setWidth(params.getAnchoRelativo());
 		vertPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		initWidget(vertPanel);
 		vertPanel.add(new HTML("<h2>Elige donde deseas subir tus fotos! </h2>"));
@@ -33,39 +34,35 @@ public class PublishView extends Composite {
 		vertPanel.add(buttFBUpload);
 		vertPanel.add(buttDBUpload);
 		vertPanel.add(buttFkUpload);
-		
-/*		splitPanel = new SplitLayoutPanel();
-		//initWidget(splitPanel);
-		splitPanel.addNorth(splitUp(params), 200);
-		splitPanel.addEast(splitDownLeft(params), 800);
-		splitPanel.add(splitDownRight(params));*/
+		vertPanel.add(buttDoComp);
 	}
 	private void inicializaBotones(final IntViews params){
 		buttFBUpload.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
 				params.setTo(IntViews.To.FACEBOOK);
 				vertPanel.clear();
 				PhotoLoad.go("processView", params);
-				//vertPanel.add(new FacebookUploadView(params));
 			}
 		});
 		buttDBUpload.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
 				params.setTo(IntViews.To.DROPBOX);
 				vertPanel.clear();
-				//vertPanel.add(new DropboxUploadView(params));
 				PhotoLoad.go("processView", params);
 			}
 		});
 		buttFkUpload.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
 				params.setTo(IntViews.To.FLICKR);
 				vertPanel.clear();
-				//vertPanel.add(new DropboxUploadView(params));
 				PhotoLoad.go("processView", params);
+			}
+		});
+		buttDoComp.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				Window.open(params.getLink().get(0), "__blank", "enabled");
+				vertPanel.clear();
+				PhotoLoad.go("loginView", params);
 			}
 		});
 	}

@@ -56,10 +56,8 @@ public class FacebookUploadView extends Composite {
 		mainPanelUpload = new VerticalPanel();
 		initWidget(panelScroll);
 		panelScroll.add(mainPanelUpload);
-		//initWidget(mainPanelDownload);
+		//initWidget(mainPanelUpload);
 
-
-		//si queremos pedir mas de un parametro se hace con "&". Ej: https://graph.facebook.com/me/photos?fields=likes&access_token=xxxxx
 		if (params != null) {
 			interaccion=params;
 			if (params.getFBToken().isEmpty()) {
@@ -72,17 +70,6 @@ public class FacebookUploadView extends Composite {
 		} else {
 			interaccion = new IntViews();
 		}
-		
-		
-		//loginView();
-		/*mainPanelUpload.add(buttonFBAuth);
-		mainPanelUpload.add(labelFB);
-		//mainPanelUpload.add(labelAccessToken);
-		mainPanelDownload.add(plTextBox);
-		mainPanelUpload.add(plTextBox);
-		mainPanelUpload.add(linkPhotoUpdate);
-		mainPanelUpload.add(buttonFBUploadPhotos);*/
-
 	}
 
 	

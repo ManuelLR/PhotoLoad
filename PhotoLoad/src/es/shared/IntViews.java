@@ -15,7 +15,7 @@ public class IntViews {
 	private  FlickrAuth flickrToken = null;
 	private  To to= To.NONE;
 	private  List<String> link = new ArrayList<String>();
-	private String anchoAbsoluto="1366px", anchoRelativo="1366px";
+	private String anchoAbsoluto="1366px", anchoRelativo="1266px";
 	
 	public IntViews() {
 	}

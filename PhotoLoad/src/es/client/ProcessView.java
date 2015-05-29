@@ -7,6 +7,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import es.shared.IntViews;
@@ -19,6 +20,8 @@ public class ProcessView extends Composite {
 	Button buttFlickrDownload = new Button("Descarga desde Flickr");
 	Button buttDBDownload = new Button("Descarga desde Dropbox");
 	Button buttGDDownload = new Button("Descarga desde Google Drive");
+	
+	private ScrollPanel scroll=new ScrollPanel();
 
 
 	public ProcessView(IntViews params) {
@@ -27,7 +30,9 @@ public class ProcessView extends Composite {
 		vertPanel= new VerticalPanel();
 		vertPanel.setWidth(params.getAnchoRelativo());
 		vertPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		initWidget(vertPanel);
+		initWidget(scroll);
+		scroll.add(vertPanel);
+		//initWidget(vertPanel);
 		
 		if(params!= null){
 			if(params.getTo().equals(IntViews.To.NONE)){
@@ -54,13 +59,6 @@ public class ProcessView extends Composite {
 				}
 			}
 		}
-		
-		
-/*		splitPanel = new SplitLayoutPanel();
-		//initWidget(splitPanel);
-		splitPanel.addNorth(splitUp(params), 200);
-		splitPanel.addEast(splitDownLeft(params), 800);
-		splitPanel.add(splitDownRight(params));*/
 	}
 	
 	private void inicializaBotones(final IntViews params){
