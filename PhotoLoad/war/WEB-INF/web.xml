@@ -5,6 +5,12 @@
          version="2.5"
          xmlns="http://java.sun.com/xml/ns/javaee">
 
+  <!--  AlL REST resources will be prefixed by /api -->
+  <context-param>
+      <param-name>resteasy.servlet.mapping.prefix</param-name>
+      <param-value>/api</param-value>
+  </context-param> 
+   
   <!-- Servlets -->
   <servlet>
     <servlet-name>flickrServlet</servlet-name>
@@ -35,6 +41,31 @@
     <servlet-name>facebookServlet</servlet-name>
     <url-pattern>/photoload/facebook</url-pattern>
   </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>driveServlet</servlet-name>
+    <servlet-class>es.server.GoogleDriveAuthenticatedServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>driveServlet</servlet-name>
+    <url-pattern>/photoload/googledrive</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+      <servlet-name>Resteasy</servlet-name>
+      <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+      <init-param>
+          <param-name>javax.ws.rs.Application</param-name>
+          <param-value>es.api.ComentariosApi</param-value>
+      </init-param>
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>Resteasy</servlet-name>
+      <url-pattern>/api/*</url-pattern>
+  </servlet-mapping>
+  
   
   <!-- Default page to serve -->
   <welcome-file-list>

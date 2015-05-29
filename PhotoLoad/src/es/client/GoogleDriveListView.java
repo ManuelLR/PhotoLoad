@@ -1,7 +1,5 @@
 package es.client;
 
-import java.util.*;
-
 import com.google.api.gwt.oauth2.client.Auth;
 import com.google.api.gwt.oauth2.client.AuthRequest;
 import com.google.gwt.core.client.Callback;
@@ -13,6 +11,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -25,10 +24,14 @@ import es.shared.domain.googledrive.Files;
 public class GoogleDriveListView extends Composite {
 
 	private static final Auth AUTH = Auth.get();
-	private VerticalPanel mainPanel;
-	private final Label labelAccessToken = new Label("");
-	private final Label labelDownload = new Label("");
-	private final FlexTable filesTable;
+	private VerticalPanel mainPanel = new VerticalPanel();
+	private  FlexTable filesTable;
+	
+
+	final String GOOGLEAUTH_URL = "https://accounts.google.com/o/oauth2/auth";
+	final String GOOGLECLIENT_ID = "910016834382-gkigh6b0hoe73li4ni69l6j36c85384m.apps.googleusercontent.com";
+	final String GOOGLEDRIVE_SCOPE = "https://www.googleapis.com/auth/drive";
+	
 	private IntViews interaccion;
 
 	private final GoogleDriveAuthenticatedServiceAsync googleDriveService = GWT
@@ -36,24 +39,23 @@ public class GoogleDriveListView extends Composite {
 
 	public GoogleDriveListView(IntViews params) {
 
-		mainPanel = new VerticalPanel();
 		initWidget(mainPanel);
+		interaccion = params;
+		if(interaccion.getGDToken().isEmpty()){
+			loginView();	
+		}else{
+			getFiles();
+		}
+		
 
-		final String GOOGLEAUTH_URL = "https://accounts.google.com/o/oauth2/auth";
-		final String GOOGLECLIENT_ID = "852892677602-vsmcqs164dmafn4idik3ml3q0fn5siek.apps.googleusercontent.com";
-		final String GOOGLEDRIVE_SCOPE = "https://www.googleapis.com/auth/drive";
+	}
 
+	private void loginView(){
+		
+		mainPanel.clear();
+		
 		Button buttonGD = new Button("Authenticate with Drive");
-		Button buttonGDFiles = new Button("Get Google Drive Files");
-
-		filesTable = new FlexTable();
-
-		filesTable.setStylePrimaryName("filesTable");
-		filesTable.getRowFormatter().setStylePrimaryName(0, "firstRow");
-		filesTable.setWidget(0, 0, new Label("Nombre del archivo"));
-		filesTable.setWidget(0, 1, new Label("Tipo de archivo"));
-		filesTable.setWidget(0, 1, new Label("Descargar"));
-
+		
 		buttonGD.addClickHandler(new ClickHandler() {
 
 			@Override
@@ -65,14 +67,14 @@ public class GoogleDriveListView extends Composite {
 
 					@Override
 					public void onFailure(Throwable reason) {
-						// TODO Auto-generated method stub
 
 					}
 
 					@Override
 					public void onSuccess(String token) {
-						// TODO Auto-generated method stub
-						labelAccessToken.setText(token);
+						interaccion.setGDToken(token);
+						getFiles();
+						
 
 					}
 
@@ -80,17 +82,32 @@ public class GoogleDriveListView extends Composite {
 
 			}
 		});
+		
+		mainPanel.add(buttonGD);
+		
+	}
+
+	private void getFiles(){
+		
+		mainPanel.clear();
+		mainPanel.add(new HTML(interaccion.getGDToken()));
+
+		Button buttonGDFiles = new Button("Get Google Drive Files");
+
+		filesTable = new FlexTable();
+
+		filesTable.setStylePrimaryName("filesTable");
+		filesTable.getRowFormatter().setStylePrimaryName(0, "firstRow");
+		filesTable.setWidget(0, 0, new Label("Nombre del archivo"));
+		filesTable.setWidget(0, 1, new Label("Tipo de archivo"));
+		filesTable.setWidget(0, 2, new Label("Descargar"));	
 
 		buttonGDFiles.addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				if (labelAccessToken.getText() == "")
-					Window.alert("Please, login before getting files");
-				else {
-					googleDriveService.getFiles(labelAccessToken.getText(),
+					googleDriveService.getFiles(interaccion.getGDToken(),
 							new AsyncCallback<Files>() {
-
 								@Override
 								public void onSuccess(Files result) {
 									showFiles(result);
@@ -98,14 +115,19 @@ public class GoogleDriveListView extends Composite {
 
 								@Override
 								public void onFailure(Throwable caught) {
+									Window.alert("Algo ha ido mal " + caught);
+									loginView();
 								}
 							});
 				}
-			}
 		});
-
+		
+		
+		mainPanel.add(buttonGDFiles);
+		mainPanel.add(filesTable);
+		
 	}
-
+	
 	void showFiles(Files result) {
 
 		int i = 0;
@@ -118,27 +140,31 @@ public class GoogleDriveListView extends Composite {
 
 					Button downloadButton = new Button("Download");
 					downloadButton.addClickHandler(new ClickHandler() {
+						
 						public void onClick(ClickEvent event) {
 							googleDriveService.getFile(
-									labelAccessToken.getText(), a.getId(),
+									interaccion.getGDToken(), a.getId(),
 									new AsyncCallback<FileItem>() {
 
 										@Override
 										public void onFailure(Throwable caught) {
 											// TODO Auto-generated method stub
-											Window.alert("Aquí falla");
+											Window.alert("Aquí falla " + caught);
 
 										}
 
 										@Override
 										public void onSuccess(FileItem result) {
 											// TODO Auto-generated method stub
-											Window.alert(result
-													.getWebContentLink()
-													+ " o este otro: "
-													+ result.getDownloadUrl());
-											labelDownload.setText(result
-													.getWebContentLink());
+//											Window.alert(result
+//													.getWebContentLink()
+//													+ " o este otro: "
+//													+ result.getDownloadUrl());
+//											labelDownload.setText(result
+//													.getWebContentLink());
+											
+											interaccion.addLink(result.getWebContentLink());
+											PhotoLoad.go("publishView", interaccion);
 
 										}
 									});
