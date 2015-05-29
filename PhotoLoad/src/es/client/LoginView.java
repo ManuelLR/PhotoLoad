@@ -17,7 +17,7 @@ public class LoginView extends Composite {
 	private Button buttonInfo = new Button("Acerca de");
 
 	
-	public LoginView(IntViews params) {
+	public LoginView(final IntViews params) {
 		// TODO Auto-generated constructor stub
 		verPanel=new VerticalPanel();
 		verPanel.setWidth(params.getAnchoAbsoluto()); // Debería ser automático sabiendo justo el tamaño de la ventana del navegador
@@ -27,13 +27,13 @@ public class LoginView extends Composite {
 		verPanel.add(buttonUpload);
 		buttonUpload.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				PhotoLoad.go("downloadView");
+				PhotoLoad.go("downloadView", params);
 			}
 		});
 		verPanel.add(buttonInfo);
 		buttonInfo.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				PhotoLoad.go("info");
+				PhotoLoad.go("info", params);
 			}
 		});
 	}

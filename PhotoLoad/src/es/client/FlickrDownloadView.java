@@ -46,11 +46,10 @@ public class FlickrDownloadView extends Composite {
 		initWidget(panelScroll);
 		panelScroll.add(panel);
 		
+		interaccion=params;
 		if(params.getFlickrToken()==null){
-			interaccion=new IntViews();
 			login();
 		}else{
-			interaccion=params;
 			//auth=params.getFlickrToken();
 			accessToken.setText(interaccion.getFlickrToken().getAccessToken().toString());
 			afterLogin();
