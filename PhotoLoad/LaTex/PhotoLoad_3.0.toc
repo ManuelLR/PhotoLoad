@@ -1,0 +1,22 @@
+\select@language {spanish}
+\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}Aplicaciones Integradas}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Evoluci\IeC {\'o}n del proyecto}{3}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}Integraci\IeC {\'o}n con Google Drive}{3}{subsubsection.1.2.1}
+\contentsline {subsubsection}{\numberline {1.2.2}Integraci\IeC {\'o}n con Dropbox}{4}{subsubsection.1.2.2}
+\contentsline {subsubsection}{\numberline {1.2.3}Integraci\IeC {\'o}n con Facebook}{4}{subsubsection.1.2.3}
+\contentsline {subsubsection}{\numberline {1.2.4}Integraci\IeC {\'o}n con Flickr}{5}{subsubsection.1.2.4}
+\contentsline {subsubsection}{\numberline {1.2.5}Problemas comunes encontrados}{6}{subsubsection.1.2.5}
+\contentsline {section}{\numberline {2}Prototipos de Interfaz de Usuario}{6}{section.2}
+\contentsline {subsection}{\numberline {2.1}Interfaz de Login}{6}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Interfaz de Subida}{7}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Interfaz de Descarga}{8}{subsection.2.3}
+\contentsline {section}{\numberline {3}Arquitectura}{9}{section.3}
+\contentsline {subsection}{\numberline {3.1}Diagrama de Componentes}{9}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Diagrama de Despliegue}{10}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Diagrama de Vistas}{11}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Diagrama de Clases}{11}{subsection.3.4}
+\contentsline {section}{\numberline {4}Historial de Versiones}{11}{section.4}
+\contentsline {section}{\numberline {5}Autoevaluaci\IeC {\'o}n}{12}{section.5}
+\contentsline {section}{\numberline {6}Herramientas utilizadas}{12}{section.6}
+\contentsline {section}{\numberline {7}Lenguajes utilizados}{13}{section.7}

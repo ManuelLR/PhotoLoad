@@ -116,19 +116,23 @@ Es ahí donde interviene PhotoLoad, un sencillo mashup ideado para facilitar est
 \subsection{Aplicaciones Integradas}\label{cap:APIs Integradas}
 Como se ha mencionado anteriormente, PhotoLoad integrará 4 aplicaciones:
 \begin{enumerate}[\textbf{\textperiodcentered}]
-	\item \textbf{Facebook} (\url{https://developers.facebook.com/docs/javascript}). API de la cual se podrán publicar fotos mediante álbumes o similar y descargar fotos. Esta aplicación se ha implementado mediante OAuth2 y servicio Rest.
-	\item \textbf{Flickr} (\url{https://www.flickr.com/services/api/}). API de la cual se podrán publicar y descargar fotos. Esta aplicación mediante OAuth1 y servicio Rest.
-	\item \textbf{Google Drive} (\url{https://developers.google.com/drive/}), la cual integra la anteriormente denominada Picasa Web Album. De esta API se obtendrán las fotos de los dispositivos gracias a la aplicación Android denominada "Fotos" la cual realiza copias de seguridad de ellas automáticamente. Esta API no solo nos permitirá descargar fotos (de la copia de seguridad y de otras fuentes) si no también almacenar las fotos obtenidas de otras APIs de manera privada. Esta aplicación se ha implementado mediante OAuth2 y servicio Rest.
-	\item \textbf{Dropbox} (\url{https://www.dropbox.com/developers/core}). De esta API se podrán exportar las fotos para publicarlas en las redes sociales o importarlas de las mismas. Esta aplicación se ha implementado mediante OAuth2 y servicio Rest.
+	\item \textbf{Facebook} (\url{https://developers.facebook.com/docs/javascript}). API de la cual se pueden publicar fotos en el muro y descargar fotos. Esta aplicación se ha implementado mediante OAuth2 y servicio Rest.
+	\item \textbf{Flickr} (\url{https://www.flickr.com/services/api/}). API de la cual se pueden descargar fotos. Esta aplicación mediante OAuth1 y servicio Rest.
+	\item \textbf{Google Drive} (\url{https://developers.google.com/drive/}), la cual integra la anteriormente denominada Picasa Web Album. De esta API se obtienen las fotos de los dispositivos gracias a la aplicación Android denominada "Fotos" la cual realiza copias de seguridad de ellas automáticamente. Esta API nos permitirá descargar fotos (de la copia de seguridad y de otras fuentes). Esta aplicación se ha implementado mediante OAuth2 y servicio Rest.
+	\item \textbf{Dropbox} (\url{https://www.dropbox.com/developers/core}). De esta API se pueden exportar las fotos para publicarlas en las redes sociales o importarlas de las mismas. Esta aplicación se ha implementado mediante OAuth2 y servicio Rest.
 	
 \end{enumerate}
 \subsection{Evolución del proyecto}\label{cap:problemas encontrados}
 \subsubsection{Integración con Google Drive}
 Durante la exploración de la api de Google Fotos, vimos que habían realizado un cambio en el funcionamiento de la misma, lo que no nos permitía usarla como teníamos planeado. Por ello decidimos sustituirla por Google Drive en la cual podías incluir una carpeta con tus fotos de Google Fotos mediante una nueva función fruto del cambio de la api por parte de Google. En este punto nos encontramos con la dificultad, que aún no hemos subsanado, de navegar entre las carpetas de Google Drive lo que nos imposibilita acceder directamente a la carpeta de fotos para evitar molestias al usuario final de la aplicación. A su vez, hemos conseguido descargar los archivos al ordenador pero no ha sido posible obtener el enlace de descarga de los mismos para poder subirlos directamente a los otros servicios que integra PhotoLoad.
+
+Aparte de dichos problemas, también se han encontrado los problemas comunes detallados en el apartado \ref{cap:problemasComunesEncontrados}.
 \subsubsection{Integración con Dropbox}
 Inicialmente, Dropbox se iba a usar mediante dos apis: \href{https://www.dropbox.com/developers/dropins/chooser/js}{Dropbox Chooser} y \href{https://www.dropbox.com/developers/dropins/saver}{Dropbox Saver}. Estas apis se decidieron sustituir por los servicios Rest prestados mediante la \href{https://www.dropbox.com/developers/core}{Dropbox Core API} (\href{https://www.dropbox.com/developers/core/docs}{Rest}) ya que, las otras apis, estaban preparadas para integrarlas directamente en una web impidiéndonos pasar los archivos entre los diferentes servicios sin descargarlos en el ordenador. Tras el cambio de aplicación, primero nos encontramos problemas con la autenticación debido a que Dropbox solo permite el envío y reenvío de peticiones mediante conexión cifrada (https), y después tuvimos algún que otro problema relacionado con los permisos asignados a la aplicación desde Dropbox.
 
 La subida de archivos no se ha podido implementar hasta la fecha debido a la mala documentación por parte de Dropbox.
+
+Aparte de dichos problemas, también se han encontrado los problemas comunes detallados en el apartado \ref{cap:problemasComunesEncontrados}.
 
 \subsubsection{Integración con Facebook}
 Esta api fue la última api que implementamos ya que, esperamos hasta realizar la práctica en la que se realizarían peticiones a Facebook mediante OAuth2 (práctica 7). Aun así, nos encontramos con el problema de que no se podían hacer peticiones que implicarán datos del usuario, a pesar de tener el acces\_token (ni en la misma práctica se pudieron realizar). Esto se debía al reciente cambio de políticas en los permisos para realizar las peticiones que había implementado Facebook (justamente la noche anterior a la realización de la práctica 7). Tras esto, decidimos pedir a Facebook los permisos necesarios, los cuales fueron rechazados dos veces (estamos esperando la respuesta de la tercera petición). Para solventar este problema, añadimos una caja de texto la cual se rellena automáticamente con el access\_token pero que, debido a los permisos ofrecidos a nuestra aplicación por parte de Facebook, no es válido para realizar las peticiones. En su lugar se puede generar un access\_token desde este link: \url{https://developers.facebook.com/tools/explorer/}. Necesitaremos seleccionar (mediante el botón Get Token) los permisos de user\_photos (para obtener tus fotos) y, en la sección Extended Permission de esa misma ventana emergente, seleccionaremos publish\_actions (para poder publicar las fotos). Tras esto, solo deberemos sustituir el access\_token  proporcionado por PhotoLoad por el obtenido desde Facebook manualmente.
@@ -146,8 +150,28 @@ Posteriormente nos encontramos con el problema que conlleva la realización de p
 
 Tras todos estos problemas con Flickr, conseguimos implementar las visualización de las fotos en nuestra aplicación sin mayores problemas. La subida de fotos no se ha podido implementar todavía debido al tiempo consumido por esta api.
 
+Aparte de dichos problemas, también se han encontrado los problemas comunes detallados en el apartado \ref{cap:problemasComunesEncontrados}.
 
-
+\subsubsection{Problemas comunes encontrados}\label{cap:problemasComunesEncontrados}
+Contar el problema de la descarga de archivos eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+eeeeeeeeeeeeeeeee
 \section{Prototipos de Interfaz de Usuario}
 A continuación se definirá el prototipo de interfaz (mockup) de PhotoLoad. Se explicará cada vista por separado acompañada de un boceto. La iteración entre vistas se detallará en la sección \ref{cap:DiagramaVistas} (página \pageref{cap:DiagramaVistas}).
 % es un mashup con interfaz web por lo que debe quí podemos ver una demo(no se como llamarle xd) de como sera la interfaz gráfica de nuestro mashap
@@ -259,9 +283,9 @@ Este apartado muestra, cuantitativamente, la dedicación prestada al proyecto po
 
 \begin{tabularx}{14cm}{|c|c|c|c|}
 	\hline \textbf{Alumno} & \textbf{Entregable 1} & \textbf{Entregable 2} & \textbf{Entregable 3} \\ 
-	\hline 	López Ruiz, Manuel Francisco 	& 100\% & 100\%  &  \\	 
-	\hline  Rodríguez Caballero, Miguel		& 100\% & 100\%  &  \\ 
-	\hline  Tinoco Castillo, David			& 100\% & 100\%  & \\
+	\hline 	López Ruiz, Manuel Francisco 	& 100\% & 100\%  &  100\%\\	 
+	\hline  Rodríguez Caballero, Miguel		& 100\% & 100\%  &  100\%\\ 
+	\hline  Tinoco Castillo, David			& 100\% & 100\%  & 100\%\\
 	\hline 
 \end{tabularx} 
 \section{Herramientas utilizadas}\label{cap:herramientas}
@@ -288,7 +312,7 @@ En este apartado se enumerarán las herramientas usadas para realizar el proyect
 
 	
 \end{enumerate}
-Esta sección irá aumentando a medida que se vaya desarrollando el proyecto.
+
 \section{Lenguajes  utilizados}
 En este apartado se enumerarán  los lenguajes que hemos necesitado para realizar el proyecto. Algunos se aprendieron con anterioridad, otros en la asignatura y otros tuvimos que aprenderlos para poder seguir adelante. 
 \begin{enumerate}[\textbf{\textperiodcentered}]
