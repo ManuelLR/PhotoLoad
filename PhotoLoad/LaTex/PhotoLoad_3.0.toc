@@ -8,21 +8,25 @@
 \contentsline {subsubsection}{\numberline {1.2.4}Integraci\IeC {\'o}n con Flickr}{5}{subsubsection.1.2.4}
 \contentsline {subsubsection}{\numberline {1.2.5}Problemas comunes encontrados}{6}{subsubsection.1.2.5}
 \contentsline {section}{\numberline {2}Prototipos de Interfaz de Usuario}{6}{section.2}
-\contentsline {subsection}{\numberline {2.1}Interfaz de Inicio}{6}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Interfaz de Selecci\IeC {\'o}n de Descarga}{7}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Interfaz de Selecci\IeC {\'o}n}{8}{subsection.2.3}
-\contentsline {section}{\numberline {3}Arquitectura}{9}{section.3}
-\contentsline {subsection}{\numberline {3.1}Diagrama de Componentes}{9}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Diagrama de Despliegue}{10}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Diagrama de Vistas}{11}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Diagrama de Clases}{11}{subsection.3.4}
-\contentsline {section}{\numberline {4}Pruebas}{11}{section.4}
-\contentsline {subsection}{\numberline {4.1}Facebook}{12}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Flickr}{12}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Dropbox}{13}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Google Drive}{13}{subsection.4.4}
-\contentsline {section}{\numberline {5}Api Rest}{13}{section.5}
-\contentsline {section}{\numberline {6}Historial de Versiones}{13}{section.6}
-\contentsline {section}{\numberline {7}Autoevaluaci\IeC {\'o}n}{14}{section.7}
-\contentsline {section}{\numberline {8}Herramientas utilizadas}{14}{section.8}
-\contentsline {section}{\numberline {9}Lenguajes utilizados}{15}{section.9}
+\contentsline {subsection}{\numberline {2.1}Interfaz de inicio}{6}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Interfaz de selecci\IeC {\'o}n de descarga}{7}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Interfaz de cada aplicaci\IeC {\'o}n}{8}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Interfaz de selecci\IeC {\'o}n de publicaci\IeC {\'o}n}{10}{subsection.2.4}
+\contentsline {section}{\numberline {3}Arquitectura}{11}{section.3}
+\contentsline {subsection}{\numberline {3.1}Diagrama de Componentes}{11}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Diagrama de Despliegue}{12}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Diagrama de Vistas}{13}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Diagrama de Clases}{13}{subsection.3.4}
+\contentsline {section}{\numberline {4}Pruebas}{13}{section.4}
+\contentsline {subsection}{\numberline {4.1}Facebook}{14}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Flickr}{14}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Dropbox}{15}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}Test GetAll}{15}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}Test Insert}{15}{subsubsection.4.3.2}
+\contentsline {subsubsection}{\numberline {4.3.3}TestDownload}{15}{subsubsection.4.3.3}
+\contentsline {subsection}{\numberline {4.4}Google Drive}{15}{subsection.4.4}
+\contentsline {section}{\numberline {5}Api Rest}{16}{section.5}
+\contentsline {section}{\numberline {6}Historial de Versiones}{17}{section.6}
+\contentsline {section}{\numberline {7}Autoevaluaci\IeC {\'o}n}{18}{section.7}
+\contentsline {section}{\numberline {8}Herramientas utilizadas}{19}{section.8}
+\contentsline {section}{\numberline {9}Lenguajes utilizados}{19}{section.9}

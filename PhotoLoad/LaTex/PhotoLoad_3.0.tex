@@ -8,6 +8,7 @@
 \usepackage{color}
 \usepackage{float}
 \usepackage{multicol}
+\usepackage{listings}%codigo de programación
 \usepackage{lscape}
 \usepackage{fancyhdr}
 \usepackage{tabularx}
@@ -200,25 +201,28 @@ Esta vista (Figura \ref{fig:VistaSubida}) permitirá al usuario seleccionar desd
 	
 \end{figure}
 \subsection{Interfaz de cada aplicación}
-Decir que varía dependiendo de cada aplicación y poner dos de ejemplos,una de bajada y otra de publicación de las fotos
+Esta vista dependerá de cada aplicación aunque podremos diferenciar claramente entre la de descarga (Ejemplo: Figura \ref{fig:VistaDescargaDropbox}) y la de publicación (Ejemplo: Figura \ref{fig:VistaSubidaFacebook}).
 
-Esta vista (Figura \ref{fig:VistaSubida}) permitirá al usuario seleccionar desde que aplicación desea descargar las fotos que posteriormente subirá. A su vez podrá ir a la página de Inicio (sección \ref{cap:InterfazInicio}).
 %Si al loguearte seleccionaste subir fotos, llegaras hasta aquí, donde puedes elegir desde donde quieres subir tus fotos (google fotos, dropbox o tu pc), hasta a que red social subirla una vez que hayas elegido las fotos!
 \begin{figure}[H]
 	
 	\centering
-	\makebox[\textwidth]{\includegraphics[width=0.8\textwidth]{imagenes/processView.png}}
-	\caption{Interfaz de subida}
-	\label{fig:VistaAplicacion}
+	\makebox[\textwidth]{\includegraphics[width=0.8\textwidth]{imagenes/descargaDe.png}}
+	\caption{Interfaz de descarga de Dropbox}
+	\label{fig:VistaDescargaDropbox}
 	
 \end{figure}
-
+\begin{figure}[H]
+	
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=0.8\textwidth]{imagenes/subeA.png}}
+	\caption{Interfaz de subida de Facebook}
+	\label{fig:VistaSubidaFacebook}
+	
+\end{figure}
 %\vspace*{2in}
 \subsection{Interfaz de selección de publicación}
-Aquí irá la publishView
-
-
-Esta vista (Figura \ref{fig:VistaDescarga}) permitirá al usuario seleccionar las fotos que desee descargar de las redes sociales (Facebook y Flickr) en el almacenamiento deseado (Dropbox o Google Drive). A su vez, mediante la barra superior, permitirá ir a la vista para subir fotos.
+Esta vista (Figura \ref{fig:VistaDescarga}) permitirá al usuario seleccionar a donde desea subir las fotos.
 
 %Si al loguearte seleccionaste bajar fotos, llegaras hasta esta otra vista, donde deberás elegir que fotos descargar hacia tu dropbox!
 \begin{figure}[H]
@@ -323,9 +327,82 @@ A continuación se expondrá la estructura de las pruebas realizadas en JUnit y 
 	\hline 
 \end{tabularx} 
 \subsection{Dropbox}
+Estas pruebas son muy sencillas, ya que consisten en ver que los métodos implementados son capaces de obtener archivos (testGetAll), crear archivos en Dropbox (testInsert) y descargarlos (testDownload).
+
+\subsubsection{Test GetAll}
+El primero de ellos consiste en hacer una llamada al método getFolder, el cual nos dará la información de los archivos y las carpetas que pertenezcan a la ruta que les pasamos como id (vacía en este caso). Después lo que hacemos es comprobar que el archivo resultante no es nulo, y mostraremos todas las carpetas y documentos que guarda mediante un bucle for.
+
+\subsubsection{Test Insert}
+En este test lo que hacemos es lo siguiente. Primero, creamos un archivo el cual queremos subir a Dropbox, después le indicamos la ruta en la que se debe crear y con que nombre (en la ruta id con el nombre Fichero\_a\_insertar). Una vez creado el archivo, creamos una cadena de texto el cual será el contenido de ese archivo que vamos a subir y hacemos una llamada al método insertFile pasándole como parámetros la ruta, el archivo a subir y su contenido. Finalmente, comprovamos que el fichero no es nulo y mostramos por pantalla el id y la ruta del archivo.
+
+\subsubsection{TestDownload}
+Sin duda es el test mas simple de todos. Llamamos al método downloadFile y le pasamos la ruta del archivo a descargar. Este método devuelte una cadena de texto, la cual es la url del archivo. Comprobamos que la cadena de texto no es nula y la mostramos por pantalla.
 
 \subsection{Google Drive}
+\begin{tabularx}{14cm}{|c|X|}
+	\hline \textbf{ID} & Prueba GD1 \\ 
+	\hline \textbf{Descripción} & Comprueba el correcto funcionamiento al solicitar la lista de archivos a la cuenta de Google Drive logeada. \\	 
+	\hline  \textbf{Entrada}		& Token (OAuth) \\ 
+	\hline  \textbf{Salida esperada}			& Lista de archivos del Google Drive del usuario \\
+	\hline  \textbf{Resultado}			& Éxito	 \\
+	\hline 
+\end{tabularx} 
+\\
+\\
+
+\begin{tabularx}{14cm}{|c|X|}
+	\hline \textbf{ID} & Prueba GD2 \\ 
+	\hline \textbf{Descripción} & Comprueba el correcto funcionamiento al intentar descargar un archivo de la cuenta de Google Drive logeada.\\	 
+	\hline  \textbf{Entrada}		& Token(OAuth) e índice del archivo a descargar en la lista \\ 
+	\hline  \textbf{Salida esperada}			& URL para descargar dicho archivo \\
+	\hline  \textbf{Resultado}			& Éxito \\
+	\hline 
+\end{tabularx} 
 \section{Api Rest}\label{cap:apiRest}
+PhotoLoad también integra una Api Rest para que los usuarios más experimentados puedan intercambiar comentarios entre ellos. Dicha api esta alojada en la siguiente url: \href{https://etsiiphotoload.appspot.com/api}{https://etsiiphotoload.appspot.com/api}. 
+
+Las peticiones que se podrán realizar a la api vienen recogidas en la siguiente tabla:
+\\
+
+\begin{tabularx}{14cm}{|c|X|X|}
+	\hline \textbf{HTTP} & \textbf{Plantilla URI} &\textbf{Descripción}\\ 
+	\hline GET & /comments & Obtiene una lista con todos los comentarios.\\	 
+	\hline  GET		& /comments/\{index\}& Obtiene el comentario con dicho índice.\\ 
+	\hline  POST			& /comments & Añade un nuevo comentario.
+	Si se añade correctamente devuelve un mensaje “201 Uploaded”.
+	Si ocurre algún error devuelve “400 Error”.\\
+	\hline  PUT			& /comments/edit/\{index\}	& Obtienes el comentario con dicho índice para que lo modifiques y se vuelva a publicar.
+	Si se realiza correctamente, debe devolver un “204 No Content”. Si el comentario, debe devolver un “404 Not Found”.\\
+	\hline  DELETE			& /comments/delete/\{index\}	& Borra el comentario con dicho índice.
+	Si se realiza correctamente, debe devolver un “204 No Content”. Si el comentario no existe debe devolver un “404 Not Found”.\\
+	\hline 
+\end{tabularx} 
+\newpage
+Ahora pondremos algunos ejemplos de respuestas en formato JSON (el cual ofrece nuestra API):
+\\
+
+GET: \href{https://etsiiphotoload.appspot.com/api/comments}{https://etsiiphotoload.appspot.com/api/comments}
+
+\begin{lstlisting}[frame=lrtb,numbers=left]
+-0: {
+	contenido: "Que gran aplicacion!"
+}
+-1: {
+	contenido: "¿Por que no quedamos el sabado?"
+}
+
+\end{lstlisting}
+%\hline
+
+\\
+GET: \href{https://etsiiphotoload.appspot.com/api/comments/0}{https://etsiiphotoload.appspot.com/api/comments\{id\}}
+
+\begin{lstlisting}[frame=lrtb,numbers=left]
+{
+contenido: "Que gran aplicacion!"
+}
+\end{lstlisting}
+
 \section{Historial de Versiones}
 Este apartado muestra el historial de versiones mediante la siguiente tabla:
 \\
