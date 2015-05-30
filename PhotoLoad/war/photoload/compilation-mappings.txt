@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 1066757A8DF450129F99A9CD1CE37986.cache.js
 user.agent gecko1_8
 
 3D932C078583E61E8BCCFFFA198B25D3.cache.js
+=======
+0C81D7560C825098170255C979720618.cache.js
+user.agent ie9
+
+3721B9EA69CA1F7E2AE469868DBC7B59.cache.js
+>>>>>>> branch 'master' of https://github.com/ManuelLR/PhotoLoad
 user.agent safari
 
+<<<<<<< HEAD
 535CB17481F6E87F72E093B473382CB5.cache.js
 user.agent ie9
 
@@ -11,6 +19,15 @@ user.agent ie9
 user.agent ie8
 
 82ED25ECE0F763DC2FE15E3C85974451.cache.js
+=======
+6272FC3DC17A74D2D129714524CE6C76.cache.js
+user.agent gecko1_8
+
+D3E4501C210E247467C0FADD7862F5E9.cache.js
+>>>>>>> branch 'master' of https://github.com/ManuelLR/PhotoLoad
 user.agent ie10
+
+D9B2458CA4BA438315127B4DAA9E1539.cache.js
+user.agent ie8
 
 Devmode:devmode.js
