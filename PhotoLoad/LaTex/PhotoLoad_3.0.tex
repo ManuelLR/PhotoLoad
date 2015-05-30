@@ -371,7 +371,7 @@ Las peticiones que se podrán realizar a la api vienen recogidas en la siguiente
 	\hline  POST			& /comments & Añade un nuevo comentario.
 	Si se añade correctamente devuelve un mensaje “201 Uploaded”.
 	Si ocurre algún error devuelve “400 Error”.\\
-	\hline  PUT			& /comments/edit/\{index\}	& Obtienes el comentario con dicho índice para que lo modifiques y se vuelva a publicar.
+	\hline  PUT			& /comments/edit/\{index\}	& Sustituye el comentario con dicho índice por el que indiques.
 	Si se realiza correctamente, debe devolver un “204 No Content”. Si el comentario, debe devolver un “404 Not Found”.\\
 	\hline  DELETE			& /comments/delete/\{index\}	& Borra el comentario con dicho índice.
 	Si se realiza correctamente, debe devolver un “204 No Content”. Si el comentario no existe debe devolver un “404 Not Found”.\\
