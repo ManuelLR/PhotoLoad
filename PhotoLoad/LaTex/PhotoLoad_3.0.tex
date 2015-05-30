@@ -173,46 +173,63 @@ eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 eeeeeeeeeeeeeeeee
 \section{Prototipos de Interfaz de Usuario}\label{cap:prototipos interfaz}
-A continuación se definirá el prototipo de interfaz (mockup) de PhotoLoad. Se explicará cada vista por separado acompañada de un boceto. La iteración entre vistas se detallará en la sección \ref{cap:DiagramaVistas} (página \pageref{cap:DiagramaVistas}).
+A continuación se definirán los prototipos de interfaz (mockup) de PhotoLoad. Se explicará cada vista por separado acompañada de un boceto. La iteración entre vistas se detallará en la sección \ref{cap:DiagramaVistas} (página \pageref{cap:DiagramaVistas}).
 % es un mashup con interfaz web por lo que debe quí podemos ver una demo(no se como llamarle xd) de como sera la interfaz gráfica de nuestro mashap
-\subsection{Interfaz de Login}
-Esta vista (Figura \ref{fig:VistaLogin}) será la primera que vea el usuario al acceder a la aplicación. En ella el usuario podrá acceder a la aplicación mediante el usuario y la contraseña. A su vez, podrá elegir si desea subir sus fotos o descargarlas (mediante la barra superior) para evitar tiempos de espera.
+\subsection{Interfaz de inicio}\label{cap:InterfazInicio}
+Esta vista (Figura \ref{fig:VistaLogin}) será la primera que vea el usuario al acceder a la aplicación. En ella el usuario podrá elegir si desea usar la aplicación o ir a la página de información.
 
 \begin{figure}[H]
 	
 	\centering
 	\makebox[\textwidth]{\includegraphics[width=0.8\textwidth]{imagenes/vistaLogueo.png}}
-	\caption{Interfaz de login}
+	\caption{Interfaz de inicio}
 	\label{fig:VistaLogin}
 	
 \end{figure}
 
-\vspace*{2in}
-\subsection{Interfaz de Subida}
-Esta vista (Figura \ref{fig:VistaSubida}) permitirá al usuario seleccionar las fotos que desee publicar (provenientes de Google Drive, Dropbox o del ordenador) en las redes sociales disponibles (Facebook y Flickr). A su vez, mediante la barra superior, permitirá ir a la vista para descargar fotos.
+%\vspace*{2in}
+\subsection{Interfaz de selección de descarga}
+Esta vista (Figura \ref{fig:VistaSubida}) permitirá al usuario seleccionar desde que aplicación desea descargar las fotos que posteriormente subirá. A su vez podrá ir a la página de Inicio (sección \ref{cap:InterfazInicio}).
 %Si al loguearte seleccionaste subir fotos, llegaras hasta aquí, donde puedes elegir desde donde quieres subir tus fotos (google fotos, dropbox o tu pc), hasta a que red social subirla una vez que hayas elegido las fotos!
 \begin{figure}[H]
 	
 	\centering
-	\makebox[\textwidth]{\includegraphics[width=0.8\textwidth]{imagenes/vistaSubida.png}}
-	\caption{Interfaz de subida}
+	\makebox[\textwidth]{\includegraphics[width=0.8\textwidth]{imagenes/processView.png}}
+	\caption{Interfaz de selección de descarga}
 	\label{fig:VistaSubida}
 	
 \end{figure}
-\vspace*{2in}
-\subsection{Interfaz de Descarga}
+\subsection{Interfaz de cada aplicación}
+Decir que varía dependiendo de cada aplicación y poner dos de ejemplos,una de bajada y otra de publicación de las fotos
+
+Esta vista (Figura \ref{fig:VistaSubida}) permitirá al usuario seleccionar desde que aplicación desea descargar las fotos que posteriormente subirá. A su vez podrá ir a la página de Inicio (sección \ref{cap:InterfazInicio}).
+%Si al loguearte seleccionaste subir fotos, llegaras hasta aquí, donde puedes elegir desde donde quieres subir tus fotos (google fotos, dropbox o tu pc), hasta a que red social subirla una vez que hayas elegido las fotos!
+\begin{figure}[H]
+	
+	\centering
+	\makebox[\textwidth]{\includegraphics[width=0.8\textwidth]{imagenes/processView.png}}
+	\caption{Interfaz de subida}
+	\label{fig:VistaAplicacion}
+	
+\end{figure}
+
+%\vspace*{2in}
+\subsection{Interfaz de selección de publicación}
+Aquí irá la publishView
+
+
 Esta vista (Figura \ref{fig:VistaDescarga}) permitirá al usuario seleccionar las fotos que desee descargar de las redes sociales (Facebook y Flickr) en el almacenamiento deseado (Dropbox o Google Drive). A su vez, mediante la barra superior, permitirá ir a la vista para subir fotos.
 
 %Si al loguearte seleccionaste bajar fotos, llegaras hasta esta otra vista, donde deberás elegir que fotos descargar hacia tu dropbox!
 \begin{figure}[H]
 	
 	\centering
-	\makebox[\textwidth]{\includegraphics[width=0.8\textwidth]{imagenes/vistaDescarga.png}}
+	\makebox[\textwidth]{\includegraphics[width=0.8\textwidth]{imagenes/publishView.png}}
 	\caption{Interfaz de descarga}
 	\label{fig:VistaDescarga}
 	
 \end{figure}
-\vspace*{2in}
+%\vspace*{2in}
 \section{Arquitectura}
 
 \subsection{Diagrama de Componentes}
@@ -251,6 +268,63 @@ El diagrama de vistas (Figura \ref{fig:DiagramaVistas}) muestra como se podrá i
 \subsection{Diagrama de Clases}
 En esta fase del proyecto no está suficientemente definido el diagrama de clases por lo que se pondrá en futuros entregables.
 \section{Pruebas}\label{cap:pruebas}
+A continuación se expondrá la estructura de las pruebas realizadas en JUnit y separadas por Apis.
+\subsection{Facebook}
+
+\begin{tabularx}{14cm}{|c|X|}
+	\hline \textbf{ID} & Prueba FB1\\ 
+	\hline \textbf{Descripción} & Comprueba la correcta obtención de las fotos existentes en Facebook para el usuario \\	 
+	\hline  \textbf{Entrada}		& Token \\ 
+	\hline  \textbf{Salida esperada}			& Lista de Fotos\\
+	\hline  \textbf{Resultado}			& Exito \\
+	\hline 
+	\end{tabularx} 
+\\
+\\
+
+\begin{tabularx}{14cm}{|c|X|}
+		\hline \textbf{ID} & Prueba FB2\\ 
+		\hline \textbf{Descripción} & Comprueba la correcta subida de fotos al tablon de Facebook \\	 
+		\hline  \textbf{Entrada}		& Token y url de la foto a subir \\ 
+		\hline  \textbf{Salida esperada}			& El id de la foto subida\\
+		\hline  \textbf{Resultado}			& Exito \\
+		\hline 
+		\end{tabularx} 
+\subsection{Flickr}
+
+\begin{tabularx}{14cm}{|c|X|}
+	\hline \textbf{ID} & Prueba FL1 \\ 
+	\hline \textbf{Descripción} & Comprueba el correcto funcionamiento de las dos fases de login necesarios para Flickr \\	 
+	\hline  \textbf{Entrada}		& No entra ningún dato \\ 
+	\hline  \textbf{Salida esperada}			& Un objeto de tipo OAuth con una URL y un AccessToken relleno\\
+	\hline  \textbf{Resultado}			& Exito \\
+	\hline 
+\end{tabularx} 
+\\
+\\
+
+\begin{tabularx}{14cm}{|c|X|}
+	\hline \textbf{ID} & Prueba FL2 \\ 
+	\hline \textbf{Descripción} & Comprueba la correcta obtención de las fotos existentes en Flickr para el usuario \\	 
+	\hline  \textbf{Entrada}		& Token (OAuth) \\ 
+	\hline  \textbf{Salida esperada}			& Lista de FlickrPhoto no null con los ids de las fotos pero sin los links de descarga\\
+	\hline  \textbf{Resultado}			& Exito \\
+	\hline 
+\end{tabularx} 
+\\
+\\
+
+\begin{tabularx}{14cm}{|c|X|}
+	\hline \textbf{ID} & Prueba FL3\\ 
+	\hline \textbf{Descripción} & Comprueba la correcta obtención de los links de las fotos existentes en Flickr para el usuario \\	 
+	\hline  \textbf{Entrada}		& Token (OAuth) y lista de FlickrPhoto de las que queremos obtener el link \\ 
+	\hline  \textbf{Salida esperada}			& Lista de FlickrPhoto con la información anterior además de links de descarga\\
+	\hline  \textbf{Resultado}			& Exito \\
+	\hline 
+\end{tabularx} 
+\subsection{Dropbox}
+
+\subsection{Google Drive}
 \section{Api Rest}\label{cap:apiRest}
 \section{Historial de Versiones}
 Este apartado muestra el historial de versiones mediante la siguiente tabla:
