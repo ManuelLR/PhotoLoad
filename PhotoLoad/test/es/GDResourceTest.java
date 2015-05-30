@@ -15,7 +15,7 @@ public class GDResourceTest {
 	
 	@Test
 	public void testGetAll(){
-		System.out.println("Prueba getAll GD");
+		System.out.println("Prueba GD1");
 		GoogleDriveResource gdr = new GoogleDriveResource(token);
 		Files files = gdr.getFiles();
 		
@@ -29,7 +29,7 @@ public class GDResourceTest {
 	
 	@Test
 	public void testDownload(){
-		System.out.println("Prueba donwload GD");
+		System.out.println("Prueba GD2");
 		String url;
 		GoogleDriveResource gdr = new GoogleDriveResource(token);
 		url = gdr.getFiles().getItems().get(1).getWebContentLink();
