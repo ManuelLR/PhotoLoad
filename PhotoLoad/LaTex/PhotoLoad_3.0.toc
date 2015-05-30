@@ -16,7 +16,9 @@
 \contentsline {subsection}{\numberline {3.2}Diagrama de Despliegue}{10}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Diagrama de Vistas}{11}{subsection.3.3}
 \contentsline {subsection}{\numberline {3.4}Diagrama de Clases}{11}{subsection.3.4}
-\contentsline {section}{\numberline {4}Historial de Versiones}{11}{section.4}
-\contentsline {section}{\numberline {5}Autoevaluaci\IeC {\'o}n}{12}{section.5}
-\contentsline {section}{\numberline {6}Herramientas utilizadas}{12}{section.6}
-\contentsline {section}{\numberline {7}Lenguajes utilizados}{13}{section.7}
+\contentsline {section}{\numberline {4}Pruebas}{11}{section.4}
+\contentsline {section}{\numberline {5}Api Rest}{11}{section.5}
+\contentsline {section}{\numberline {6}Historial de Versiones}{11}{section.6}
+\contentsline {section}{\numberline {7}Autoevaluaci\IeC {\'o}n}{12}{section.7}
+\contentsline {section}{\numberline {8}Herramientas utilizadas}{13}{section.8}
+\contentsline {section}{\numberline {9}Lenguajes utilizados}{13}{section.9}

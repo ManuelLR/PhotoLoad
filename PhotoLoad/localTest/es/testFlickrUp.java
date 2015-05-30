@@ -5,10 +5,8 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 
-import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
 import org.mortbay.util.ByteArrayOutputStream2;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.FlickrApi;
@@ -20,6 +18,7 @@ import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
 
 
+@SuppressWarnings("deprecation")
 public class testFlickrUp {
 
 	private static final String PROTECTED_RESOURCE_URL = "https://api.flickr.com/services/rest/";

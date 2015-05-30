@@ -2,7 +2,6 @@ package es;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Map;
 
@@ -58,7 +57,7 @@ public static String insertFile(Contents file, String content) throws IOExceptio
 
 
 public static String insertFile2(String path, Contents file, String content) {
-	String uri = "https://api.dropbox.com/1/metadata/auto";
+	//String uri = "https://api.dropbox.com/1/metadata/auto";
 	String uri_upload = "https://api-content.dropbox.com/1/files_put/auto";
 	String access_token = "CLUv1uDVmYkAAAAAAAABbrh7w_ORfD_wJQdwZjFWUaBDgC1rdI_2NxdReFdKV4as";
 	ClientResource cr = null;
