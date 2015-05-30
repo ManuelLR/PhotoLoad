@@ -4,11 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import es.server.resources.DropboxResource;
 import es.server.resources.FacebookPhotosResource;
-import es.shared.domain.dropbox.Contents;
-import es.shared.domain.dropbox.Folder;
-import es.shared.domain.facebook.Data;
 import es.shared.domain.facebook.FBDataPhoto;
 import es.shared.domain.facebook.FBPhotoUpload;
 import es.shared.domain.facebook.FacebookPhotos;

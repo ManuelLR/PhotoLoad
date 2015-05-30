@@ -16,29 +16,58 @@
 \begin{document}
 
 
-\subsection{prueba 1}
+\subsection{Prueba FL1}
 
 \begin{tabularx}{14cm}{|c|X|}
-	\hline \textbf{ID} & prueba1 \\ 
-	\hline \textbf{Descripción} & Esta es una descripcion muy muy muy larga que se ajustará automáticamente a la celda
-	
-	y esto es lo que pasa si quiero metertle más espacio \\	 
-	\hline  \textbf{Entrada}		& A escribir \\ 
-	\hline  \textbf{Salida esperada}			& Po JIIII \\
-	\hline  \textbf{Resultado}			& Fracaso \\
+	\hline \textbf{ID} & Prueba FL1 \\ 
+	\hline \textbf{Descripción} & Comprueba el correcto funcionamiento de las dos fases de login necesarios para Flickr \\	 
+	\hline  \textbf{Entrada}		& No entra ningún dato \\ 
+	\hline  \textbf{Salida esperada}			& Un objeto de tipo OAuth con una URL y un AccessToken relleno\\
+	\hline  \textbf{Resultado}			& Exito \\
 	\hline 
 \end{tabularx} 
 
-\subsection{prueba 2}
+\subsection{Prueba FL2}
 
 \begin{tabularx}{14cm}{|c|X|}
-	\hline \textbf{ID} & prueba2 \\ 
-	\hline \textbf{Descripción} & Esta es una descripcion muy muy muy larga que se ajustará automáticamente a la celda
-	
-	y esto es lo que pasa si quiero metertle más espacio \\	 
-	\hline  \textbf{Entrada}		& A escribir \\ 
-	\hline  \textbf{Salida esperada}			& Po JIIII \\
-	\hline  \textbf{Resultado}			& Fracaso \\
+	\hline \textbf{ID} & Prueba FL2 \\ 
+	\hline \textbf{Descripción} & Comprueba la correcta obtención de las fotos existentes en Flickr para el usuario \\	 
+	\hline  \textbf{Entrada}		& Token (OAuth) \\ 
+	\hline  \textbf{Salida esperada}			& Lista de FlickrPhoto no null con los ids de las fotos pero sin los links de descarga\\
+	\hline  \textbf{Resultado}			& Exito \\
+	\hline 
+\end{tabularx} 
+
+\subsection{Prueba FL3}
+
+\begin{tabularx}{14cm}{|c|X|}
+	\hline \textbf{ID} & Prueba FL3\\ 
+	\hline \textbf{Descripción} & Comprueba la correcta obtención de los links de las fotos existentes en Flickr para el usuario \\	 
+	\hline  \textbf{Entrada}		& Token (OAuth) y lista de FlickrPhoto de las que queremos obtener el link \\ 
+	\hline  \textbf{Salida esperada}			& Lista de FlickrPhoto con la información anterior además de links de descarga\\
+	\hline  \textbf{Resultado}			& Exito \\
+	\hline 
+\end{tabularx} 
+
+\subsection{Prueba FB1}
+
+\begin{tabularx}{14cm}{|c|X|}
+	\hline \textbf{ID} & Prueba FB1\\ 
+	\hline \textbf{Descripción} & Comprueba la correcta obtención de las fotos existentes en Facebook para el usuario \\	 
+	\hline  \textbf{Entrada}		& Token \\ 
+	\hline  \textbf{Salida esperada}			& Lista de Fotos\\
+	\hline  \textbf{Resultado}			& Exito \\
+	\hline 
+\end{tabularx} 
+
+\subsection{Prueba FB2}
+
+\begin{tabularx}{14cm}{|c|X|}
+	\hline \textbf{ID} & Prueba FB2\\ 
+	\hline \textbf{Descripción} & Comprueba la correcta subida de fotos al tablon de Facebook \\	 
+	\hline  \textbf{Entrada}		& Token y url de la foto a subir \\ 
+	\hline  \textbf{Salida esperada}			& El id de la foto subida\\
+	\hline  \textbf{Resultado}			& Exito \\
 	\hline 
 \end{tabularx} 
 \end{document}

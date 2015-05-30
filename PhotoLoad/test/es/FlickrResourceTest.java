@@ -8,7 +8,6 @@ import java.util.Scanner;
 import org.junit.Test;
 
 import es.server.resources.FlickrResource;
-import es.shared.domain.dropbox.Contents;
 import es.shared.domain.flickr.FlickrAuth;
 import es.shared.domain.flickr.FlickrPhoto;
 
