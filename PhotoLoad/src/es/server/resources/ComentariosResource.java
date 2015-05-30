@@ -115,6 +115,7 @@ public class ComentariosResource {
 			
 		}
 		
+		repository.remove(i);
 		repository.put(c, i);
 		
 		return Response.noContent().build();

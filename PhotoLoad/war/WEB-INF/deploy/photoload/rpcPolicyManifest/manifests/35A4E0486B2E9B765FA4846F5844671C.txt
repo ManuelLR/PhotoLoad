@@ -1,0 +1,2 @@
+serviceClass: es.client.services.DropboxAuthenticatedService
+path: 59C3E6D9F212B256EEF61C7C88CF087C.gwt.rpc

@@ -1,0 +1,2 @@
+serviceClass: es.client.services.GoogleDriveAuthenticatedService
+path: 16F66A371CD4250BEAD35FC4CAD8A605.gwt.rpc
