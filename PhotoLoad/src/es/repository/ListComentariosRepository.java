@@ -16,7 +16,7 @@ public class ListComentariosRepository implements ComentariosRepository {
 	}
 
 	@Override
-	public List<Comentario> get() {
+	public List<Comentario> getAll() {
 
 		return misComentarios;
 		
@@ -32,7 +32,7 @@ public class ListComentariosRepository implements ComentariosRepository {
 	@Override
 	public void put(Comentario c, Integer i) {
 
-		misComentarios.get(i).setContenido(c.getContenido());
+		misComentarios.add(i, c);
 		
 	}
 

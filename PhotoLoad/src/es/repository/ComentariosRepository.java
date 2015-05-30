@@ -6,7 +6,7 @@ import es.shared.domain.Comentario;
 
 public interface ComentariosRepository {
 	
-	public List<Comentario> get(); // consultar
+	public List<Comentario> getAll(); // consultar lista
 
 	public void post(Comentario c); // insertar 
 
@@ -14,6 +14,6 @@ public interface ComentariosRepository {
 
 	public void remove(Integer i); // eliminar 
 	
-	public Comentario get(Integer i);
+	public Comentario get(Integer i); //consultar
 
 }

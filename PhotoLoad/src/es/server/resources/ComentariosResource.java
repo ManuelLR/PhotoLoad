@@ -61,14 +61,18 @@ public class ComentariosResource {
 	@Produces("application/json")
 	public List<Comentario> getAll(){
 		
-		return repository.get();
+		if(repository==null){
+			throw new NotFoundException("La lista no puede estar vacia");
+		}
+		
+		return repository.getAll();
 		
 	}
 
 	@GET
 	@Path("/{index}")
 	@Produces("application/json")
-	public Comentario get(Integer i){
+	public Comentario get(@PathParam("index") Integer i){
 		return repository.get(i);
 		
 	}
@@ -85,7 +89,7 @@ public class ComentariosResource {
 		repository.post(c);
 		
 		UriBuilder ub = uriInfo.getAbsolutePathBuilder().path(this.getClass(), "get");
-		URI uri = ub.build(repository.get().size());
+		URI uri = ub.build(repository.getAll().size());
 		ResponseBuilder resp = Response.created(uri);
 		resp.entity(c);
 				
@@ -99,7 +103,7 @@ public class ComentariosResource {
 	public Response updateComentario(@PathParam("index") Integer i, Comentario c){
 		
 		
-		if(i >= repository.get().size()){
+		if(i >= repository.getAll().size()){
 			
 			throw new NotFoundException("El comentario con indice" + i + "no se encuentra en la lista");
 			
@@ -121,7 +125,7 @@ public class ComentariosResource {
 	@Path("/delete/{index}")
 	public void RemoveComentario(@PathParam("index") Integer i){
 		
-		if(i >= repository.get().size()){
+		if(i >= repository.getAll().size()){
 			
 			throw new NotFoundException("El comentario con indice" + i + "no se encuentra en la lista");
 			
