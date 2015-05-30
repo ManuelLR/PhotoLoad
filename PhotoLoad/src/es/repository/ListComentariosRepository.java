@@ -7,11 +7,11 @@ import es.shared.domain.Comentario;
 
 public class ListComentariosRepository implements ComentariosRepository {
 	
-	List<Comentario> misComentarios;
+	private List<Comentario> misComentarios = new ArrayList<Comentario>();
 	
 	public ListComentariosRepository() {
 	
-		misComentarios = new ArrayList<Comentario>();
+		//misComentarios = new ArrayList<Comentario>();
 
 	}
 
@@ -39,7 +39,9 @@ public class ListComentariosRepository implements ComentariosRepository {
 	@Override
 	public void remove(Integer i) {
 		
-		misComentarios.remove(i);
+		//misComentarios.remove(i);
+		//misComentarios.set(i, null);
+		misComentarios.remove(misComentarios.get(i));
 		
 	}
 
