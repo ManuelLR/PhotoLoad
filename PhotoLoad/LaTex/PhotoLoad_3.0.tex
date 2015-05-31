@@ -154,25 +154,12 @@ Tras todos estos problemas con Flickr, conseguimos implementar las visualizació
 Aparte de dichos problemas, también se han encontrado los problemas comunes detallados en el apartado \ref{cap:problemasComunesEncontrados}.
 
 \subsubsection{Problemas comunes encontrados}\label{cap:problemasComunesEncontrados}
-Contar el problema de la descarga de archivos eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeee
+En esta entrega el mayor de los problemas ha sido, sin duda, la subida de las fotos. Esto se debe a que, primeramente, los archivos necesitan estar alojados en nuestro servidor o en el ordenador del usuario ya que  los archivos se deben mandar byte a byte a Dropbox, Flickr y Google Drive. Y el segundo problema encontrado es con las librerías\footnote{Las librerías de las que hablamos son: org.apache.http.entity.mime.MultipartEntity, org.apache.http.entity.mime.content.FileBody y org.apache.http.entity.mime.ByteArrayOutputStream} ya que estas librerías no están soportadas por AppEngine y GWT por lo que es completamente imposible implementar la funcionalidad de subida de fotos a Flickr, Dropbox y Google Drive.
+
+En Dropbox, para demostrar que es posible la subida de archivos, la api subirá  un txt con un enlace a la foto para descargarla.
+
+En Flickr, al no poder usar la misma solución que Dropbox, no se pueden subir las fotos directamente desde la api pero, para demostrar que se ha implementado la subida de fotos, se podrá correr el archivo "localTest/es/testFlickrUp.java”  como una aplicación habitual de java la cual subirá la foto de nuestro ordenador que le hayamos dicho.
+
 \section{Prototipos de Interfaz de Usuario}\label{cap:prototipos interfaz}
 A continuación se definirán los prototipos de interfaz (mockup) de PhotoLoad. Se explicará cada vista por separado acompañada de un boceto. La iteración entre vistas se detallará en la sección \ref{cap:DiagramaVistas} (página \pageref{cap:DiagramaVistas}).
 % es un mashup con interfaz web por lo que debe quí podemos ver una demo(no se como llamarle xd) de como sera la interfaz gráfica de nuestro mashap
@@ -182,7 +169,7 @@ Esta vista (Figura \ref{fig:VistaLogin}) será la primera que vea el usuario al 
 \begin{figure}[H]
 	
 	\centering
-	\makebox[\textwidth]{\includegraphics[width=0.8\textwidth]{imagenes/vistaLogueo.png}}
+	\makebox[\textwidth]{\includegraphics[width=0.5\textwidth]{imagenes/vistaLogueo.png}}
 	\caption{Interfaz de inicio}
 	\label{fig:VistaLogin}
 	
@@ -195,7 +182,7 @@ Esta vista (Figura \ref{fig:VistaSubida}) permitirá al usuario seleccionar desd
 \begin{figure}[H]
 	
 	\centering
-	\makebox[\textwidth]{\includegraphics[width=0.8\textwidth]{imagenes/processView.png}}
+	\makebox[\textwidth]{\includegraphics[width=0.5\textwidth]{imagenes/processView.png}}
 	\caption{Interfaz de selección de descarga}
 	\label{fig:VistaSubida}
 	
@@ -207,7 +194,7 @@ Esta vista dependerá de cada aplicación aunque podremos diferenciar claramente
 \begin{figure}[H]
 	
 	\centering
-	\makebox[\textwidth]{\includegraphics[width=0.8\textwidth]{imagenes/descargaDe.png}}
+	\makebox[\textwidth]{\includegraphics[width=0.5\textwidth]{imagenes/descargaDe.png}}
 	\caption{Interfaz de descarga de Dropbox}
 	\label{fig:VistaDescargaDropbox}
 	
@@ -215,7 +202,7 @@ Esta vista dependerá de cada aplicación aunque podremos diferenciar claramente
 \begin{figure}[H]
 	
 	\centering
-	\makebox[\textwidth]{\includegraphics[width=0.8\textwidth]{imagenes/subeA.png}}
+	\makebox[\textwidth]{\includegraphics[width=0.5\textwidth]{imagenes/subeA.png}}
 	\caption{Interfaz de subida de Facebook}
 	\label{fig:VistaSubidaFacebook}
 	
@@ -228,7 +215,7 @@ Esta vista (Figura \ref{fig:VistaDescarga}) permitirá al usuario seleccionar a 
 \begin{figure}[H]
 	
 	\centering
-	\makebox[\textwidth]{\includegraphics[width=0.8\textwidth]{imagenes/publishView.png}}
+	\makebox[\textwidth]{\includegraphics[width=0.5\textwidth]{imagenes/publishView.png}}
 	\caption{Interfaz de descarga}
 	\label{fig:VistaDescarga}
 	
@@ -269,8 +256,6 @@ El diagrama de vistas (Figura \ref{fig:DiagramaVistas}) muestra como se podrá i
 	\label{fig:DiagramaVistas}
 	
 \end{figure}
-\subsection{Diagrama de Clases}
-En esta fase del proyecto no está suficientemente definido el diagrama de clases por lo que se pondrá en futuros entregables.
 \section{Pruebas}\label{cap:pruebas}
 A continuación se expondrá la estructura de las pruebas realizadas en JUnit y separadas por Apis.
 \subsection{Facebook}
@@ -364,7 +349,7 @@ PhotoLoad también integra una Api Rest para que los usuarios más experimentado
 Las peticiones que se podrán realizar a la api vienen recogidas en la siguiente tabla:
 \\
 
-\begin{tabularx}{14cm}{|c|X|X|}
+\begin{tabularx}{15cm}{|c|X|X|}
 	\hline \textbf{HTTP} & \textbf{Plantilla URI} &\textbf{Descripción}\\ 
 	\hline GET & /comments & Obtiene una lista con todos los comentarios.\\	 
 	\hline  GET		& /comments/\{index\}& Obtiene el comentario con dicho índice.\\ 
@@ -377,7 +362,8 @@ Las peticiones que se podrán realizar a la api vienen recogidas en la siguiente
 	Si se realiza correctamente, debe devolver un “204 No Content”. Si el comentario no existe debe devolver un “404 Not Found”.\\
 	\hline 
 \end{tabularx} 
-\newpage
+\vspace*{0.3in}
+
 Ahora pondremos algunos ejemplos de respuestas en formato JSON (el cual ofrece nuestra API):
 \\
 
@@ -393,9 +379,9 @@ GET: \href{https://etsiiphotoload.appspot.com/api/comments}{https://etsiiphotolo
 
 \end{lstlisting}
 %\hline
-
-\\
-GET: \href{https://etsiiphotoload.appspot.com/api/comments/0}{https://etsiiphotoload.appspot.com/api/comments\{id\}}
+\vspace*{0.5in}
+%\\
+GET: \href{https://etsiiphotoload.appspot.com/api/comments/0}{https://etsiiphotoload.appspot.com/api/comments/\{id\}}
 
 \begin{lstlisting}[frame=lrtb,numbers=left]
 {
@@ -441,7 +427,7 @@ Este apartado muestra el historial de versiones mediante la siguiente tabla:
 	\hline  
 	
 \end{tabularx} 
-
+\newpage
 \section{Autoevaluación}
 Este apartado muestra, cuantitativamente, la dedicación prestada al proyecto por cada integrante del grupo. Para ello se usará la siguiente tabla la cual muestra el porcentaje de colaboración siendo un 0\% la no participación en el entregable y el 100\% la total implicación en él.
 \\
