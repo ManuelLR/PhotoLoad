@@ -57,11 +57,24 @@ public class InfoView extends Composite {
 		
 		result+="<div class=\"title\" style=\"width:90%; margin: 0 auto;\"><h2>Api Rest</h2></div>";
 		result+="<div id=\"Api Rest\" style=\"font-size:medium; width:90%; margin: 0 auto;\"><p>";
-		result+="La URI principal será http://etsiiphotoload.appspot.com/api/photo";
+		result+="La URI principal será https://etsiiphotoload.appspot.com/api/comments";
 		result+="</p><table border=\"1\" style=\"text-align:center;\">";
-		result+="<tr bgcolor=\"#6FBEFB\"><th style=\"border: 1px solid black; border-collapse: collapse;\">HTTP</th><th>Plantilla URI</th><th>Descripción</th></tr>";
-		result+="<tr><td>POST</td><td>/foto</td><td align=\"justify\">Añade una nueva foto.</br>Si se añade correctamente devuelve un mensaje “201 Uploaded”.</br>Si ocurre algún error devuelve “400 Error”.</td><tr>";
-		result+="<tr bgcolor=\"#6FBEFB\"><td>POST</td><td>/foto</td><td align=\"justify\">Añade una nueva foto.</br>Si se añade correctamente devuelve un mensaje “201 Uploaded”.</br>Si ocurre algún error devuelve “400 Error”.</td><tr>";
+		result+="<tr bgcolor=\"#6FBEFB\"><th style=\"border: 1px solid black; border-collapse: collapse;\">HTTP(VERBO)</th><th>Plantilla URI</th><th>Descripción</th></tr>";
+		
+		//GetAll
+		result+="<tr><td>GET</td><td>/comments</td><td align=\"justify\">Obtiene una lista con todos los comentarios.</td><tr>";
+		
+		//Get
+		result+="<tr bgcolor=\"#6FBEFB\"><td>GET</td><td>/comments/{index}</td><td align=\"justify\">Obtiene el comentario con dicho índice</td><tr>";
+		
+		//POST
+		result+="<tr><td>POST</td><td>/comments</td><td align=\"justify\">Añade un nuevo comentario.</br>Si se añade correctamente devuelve un mensaje “201 Uploaded”.</br>Si ocurre algún error devuelve “400 Error”.</td><tr>";
+		
+		//PUT
+		result+="<tr bgcolor=\"#6FBEFB\"><td>PUT</td><td>/comments/edit/{index}</td><td align=\"justify\">Sustituye el comentario con dicho índice por el que le indiques.</br>Si se realiza correctamente, debe devolver un “204 No Content”.</br>Si ocurre algún error devuelve “404 Not Found”.</td><tr>";
+		
+		//DELETE
+		result+="<tr><td>DELETE</td><td>/comments/delete/{index}</td><td align=\"justify\">Borra el comentario con dicho índice.</br>Si se realiza correctamente, debe devolver un “204 No Content”. </br>Si el comentario no existe debe devolver un “404 Not Found”</td><tr>";
 		result+="</table></div>";
 		
 		
