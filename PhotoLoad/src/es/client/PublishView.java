@@ -17,8 +17,8 @@ public class PublishView extends Composite {
 	private VerticalPanel vertPanel;
 	
 	Button buttFBUpload = new Button("Sube a Facebook (no válido para Google Drive)");
-	Button buttDBUpload = new Button("Sube a Dropbox (en pruebas)");
-	Button buttFkUpload = new Button("Sube a Flickr (solo funcional en consola y por local)");
+	Button buttDBUpload = new Button("Sube a Dropbox");
+	Button buttFkUpload = new Button("Sube a Flickr (No funcional online)");
 	Button buttDoComp = new Button("Descarga al ordenador");
 
 	public PublishView(IntViews params) {
