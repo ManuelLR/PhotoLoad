@@ -75,7 +75,13 @@ public class InfoView extends Composite {
 		
 		//DELETE
 		result+="<tr><td>DELETE</td><td>/comments/delete/{index}</td><td align=\"justify\">Borra el comentario con dicho índice.</br>Si se realiza correctamente, debe devolver un “204 No Content”. </br>Si el comentario no existe debe devolver un “404 Not Found”</td><tr>";
-		result+="</table></div>";
+		result+="</table></div></br>";
+		
+		
+		result+="<div class=\"exampleApi\" style=\"width:90%; margin: 0 auto;\"><li>GET: https://etsiiphotoload.appspot.com/api/comments</li></div>"
+				+ "<p>[{\"contenido\":\"Que gran aplicacion!\"},{\"contenido\":\"¿Por que no quedamos el sabado para celebrar el aprobado?\"}]</p>"
+				+ "<div class=\"exampleApi\" style=\"width:90%; margin: 0 auto;\"><li>GET: https://etsiiphotoload.appspot.com/api/comments/{id}</li></div>"
+				+ "<p>{\"contenido\":\"¿Por que no quedamos el sabado para celebrar el aprobado?\"}</p>";
 		
 		
 		result+="<div class=\"title\" style=\"width:90%; margin: 0 auto;\"><h2>Trabajo realizado por: </h2></div>";		
