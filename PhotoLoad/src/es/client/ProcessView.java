@@ -42,7 +42,7 @@ public class ProcessView extends Composite {
 				vertPanel.add(buttFlickrDownload);
 				vertPanel.add(buttDBDownload);
 				vertPanel.add(buttGDDownload);
-				String tokensActuales="Actualmente los token guardados son: <ul>";
+/*				String tokensActuales="Actualmente los token guardados son: <ul>";
 				tokensActuales +="<li>FB: "+params.getFBToken()+"</li>";
 				if(params.getFlickrToken()!=null){
 					tokensActuales +="<li>Flickr: "+params.getFlickrToken().getRequestToken()+"</li>";
@@ -50,7 +50,7 @@ public class ProcessView extends Composite {
 				tokensActuales +="<li>DB: "+params.getDropboxToken()+"</li>";
 				tokensActuales +="<li>GD: "+params.getGDToken()+"</li>";
 				tokensActuales +="</ul>";
-				vertPanel.add(new HTML(tokensActuales));
+				vertPanel.add(new HTML(tokensActuales));*/
 			}else{//Para acciones predefinidas
 				switch (params.getTo()) {
 				case FACEBOOK:
