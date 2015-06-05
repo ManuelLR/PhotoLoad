@@ -39,7 +39,6 @@ public class DropboxDownloadView extends Composite {
 		mainPanel = new VerticalPanel();
 		panelScroll.add(mainPanel);
 
-		/** TODO PRACTICA7 */
 		final String DROPBOX_URL = "https://www.dropbox.com/1/oauth2/authorize";
 		final String DROPBOX_ID = "t9zcgs18eplaqm4";
 
